@@ -12,7 +12,7 @@ Class CategoriaController extends Controller {
         $this->dados['title_page'] = "Categoria &bull; Oliva de Angola &#8482;";
         $this->dados['page_context'] = "Categoria";
         $this->dados['page_icon'] = "fa fa-start";
-        $this->dados['page_url'] = '/intercolegial/Categoria/';
+        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Categoria/';
     }
 
     public function indexAction() {

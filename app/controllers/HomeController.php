@@ -9,7 +9,7 @@ class HomeController extends Controller
         $this->dados['title_page'] = 'Intercolegial Tina Tune';
         $this->dados['page_context'] = "Intercolegial Tina Tune";
         $this->dados['page_icon'] = "fa fa-home";
-        $this->dados['page_url'] = '/intercolegial/Home/';
+        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Home/';
     }
 
     public function indexAction()

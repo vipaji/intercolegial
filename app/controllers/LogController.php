@@ -12,8 +12,8 @@ Class LogController extends Controller {
         $this->dados['title_page'] = "Actividades &bull; Oliva de Angola &#8482;";
         $this->dados['page_context'] = "Actividades";
         $this->dados['page_icon'] = "fa fa-exchange";
-        $this->dados['page_url'] = '/intercolegial/Log/';
-        $this->dados['home_url'] = '/intercolegial/Dashboard/';
+        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Log/';
+        $this->dados['home_url'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
     }
 
     public function indexAction() {

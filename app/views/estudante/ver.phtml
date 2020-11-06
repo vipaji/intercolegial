@@ -150,7 +150,7 @@
                         ?>
                           <tr>
                             <td><?php echo (++$cont); ?></td>
-                            <td><a href="/intercolegial/web-files/uploads/documentos/<?php echo $documento->getFicheiro(); ?>" target="_new"><?php echo $documento->getDescricao(); ?></a></td>
+                            <td><a href="https://www.intercolegialtinatune.co.ao/web-files/uploads/documentos/<?php echo $documento->getFicheiro(); ?>" target="_new"><?php echo $documento->getDescricao(); ?></a></td>
                             <td><?= $documento->getData(); ?></td>
                             <td><a href="<?= $v_page_url ?>eliminarMultimedia/<?php echo base64_encode("id_utilizador") . '/' . base64_encode($documento->getUtilizador()) . '/' . base64_encode("id") . '/' . base64_encode($documento->getId()) ?>" title="Eliminar"><i class="fa fa-trash"></i> </a></td>
                           </tr>

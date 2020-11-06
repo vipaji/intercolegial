@@ -12,8 +12,8 @@ Class PermissaoController extends Controller {
         $this->dados['title_page'] = "Permissão &bull; Oliva de Angola &#8482;";
         $this->dados['page_context'] = "Permissão";
         $this->dados['page_icon'] = "fa fa-asterisk";
-        $this->dados['page_url'] = '/intercolegial/Permissao/';
-        $this->dados['home_url'] = '/intercolegial/Dashboard/';
+        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Permissao/';
+        $this->dados['home_url'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
     }
 
     public function indexAction() {

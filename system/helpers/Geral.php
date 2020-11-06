@@ -21,10 +21,10 @@ Class Geral {
     const CONS_UTILIZADOR_ACTIVADO = 1;
     const CONS_UTILIZADOR_DESACTIVADO = 0;
     
-    const DIR_IMG_UTILIZADORES = '/intercolegial/web-files/uploads/utilizadores/';
-    const DIR_IMG_PRODUTOS = '/intercolegial/web-files/uploads/produtos/';
-    const DIR_IMG_BLOG = '/intercolegial/web-files/uploads/blog/';
-    const DIR_IMG_DOCUMENTOS = "/intercolegial/web-files/uploads/documentos/";
+    const DIR_IMG_UTILIZADORES = 'https://www.intercolegialtinatune.co.ao/web-files/uploads/utilizadores/';
+    const DIR_IMG_PRODUTOS = 'https://www.intercolegialtinatune.co.ao/web-files/uploads/produtos/';
+    const DIR_IMG_BLOG = 'https://www.intercolegialtinatune.co.ao/web-files/uploads/blog/';
+    const DIR_IMG_DOCUMENTOS = "https://www.intercolegialtinatune.co.ao/web-files/uploads/documentos/";
     
     const CONS_PERFIL_GESTOR = "gestor";
     const CONS_PERFIL_ADMINISTRADOR = "administrador";

@@ -12,8 +12,8 @@ Class ClienteController extends Controller {
         $this->dados['title_page'] = "Cliente &bull; Oliva de Angola &#8482;";
         $this->dados['page_context'] = "Cliente";
         $this->dados['page_icon'] = "fa fa-users";
-        $this->dados['page_url'] = '/intercolegial/Cliente/';
-        $this->dados['home_url'] = '/intercolegial/Dashboard/';
+        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Cliente/';
+        $this->dados['home_url'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
     }
 
     public function indexAction() {

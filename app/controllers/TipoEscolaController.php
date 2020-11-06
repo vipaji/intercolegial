@@ -12,7 +12,7 @@ Class TipoEscolaController extends Controller {
         $this->dados['title_page'] = "Tipo de Escola &bull; Intercolegial Tina Tune &#8482;";
         $this->dados['page_context'] = "Tipo de Escola";
         $this->dados['page_icon'] = "fa fa-start";
-        $this->dados['page_url'] = '/intercolegial/TipoEscola/';
+        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/TipoEscola/';
         $this->dados['id'] = 'tipoescola';
     }
 

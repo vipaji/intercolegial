@@ -29,7 +29,7 @@ if (isset($v_multimedias)) {
                 ?>
                 <div class="w3-display-container mySlides">
                     <div style="width:100%; height:500px; background-image:url(<?= Geral::DIR_IMG_PRODUTOS?><?php echo $file->getFicheiro(); ?>); background-size:cover; background-position: center;">
-                        <!--<img src="/intercolegial/web-files/uploads/imoveis/<?php echo $file->getFicheiro(); ?>" alt="<?php echo $file->getDescricao(); ?>" style="width:100%">-->
+                        <!--<img src="https://www.intercolegialtinatune.co.ao/web-files/uploads/imoveis/<?php echo $file->getFicheiro(); ?>" alt="<?php echo $file->getDescricao(); ?>" style="width:100%">-->
                     </div>
                     <div class="w3-display-topleft w3-container w3-padding-16 w3-black">
                         <?php echo $file->getDescricao(); ?>
@@ -37,7 +37,7 @@ if (isset($v_multimedias)) {
                         if ($file->getUtilizador() != null) {
                             ?>
                             &nbsp;Carregado por: 
-                            <a href="/intercolegial/utilizador/ver/<?php echo base64_encode("id") . '/' . base64_encode($v_userInfo->getId()) ?>">
+                            <a href="https://www.intercolegialtinatune.co.ao/utilizador/ver/<?php echo base64_encode("id") . '/' . base64_encode($v_userInfo->getId()) ?>">
                                 <?php echo $file->getUtilizador()->getNome() . "&nbsp;"; ?>
                             </a>
                         <?php }
@@ -50,8 +50,8 @@ if (isset($v_multimedias)) {
             } else if ($file->getTipo() == Geral::CONS_MULTIMEDIA_TIPO_VIDEO) {
                 ?>
                 <div class="w3-display-container mySlides">
-                    <div style="width:100%; height:500px; background-image:url(/intercolegial/web-files/default/images/video.png); background-size:cover; background-position: center;">
-                        <!--<img src="/intercolegial/web-files/uploads/imoveis/<?php echo $file->getFicheiro(); ?>" alt="<?php echo $file->getDescricao(); ?>" style="width:100%">-->
+                    <div style="width:100%; height:500px; background-image:url(https://www.intercolegialtinatune.co.ao/web-files/default/images/video.png); background-size:cover; background-position: center;">
+                        <!--<img src="https://www.intercolegialtinatune.co.ao/web-files/uploads/imoveis/<?php echo $file->getFicheiro(); ?>" alt="<?php echo $file->getDescricao(); ?>" style="width:100%">-->
                     </div>
                     <div class="w3-display-topleft w3-container w3-padding-16 w3-black">
                         <?php echo $file->getDescricao(); ?></span>
@@ -59,7 +59,7 @@ if (isset($v_multimedias)) {
                         if ($file->getUtilizador() != null) {
                             ?>
                             &nbsp;Carregado por: 
-                            <a href="/intercolegial/utilizador/ver/<?php echo base64_encode("id") . '/' . base64_encode($v_userInfo->getId()) ?>">
+                            <a href="https://www.intercolegialtinatune.co.ao/utilizador/ver/<?php echo base64_encode("id") . '/' . base64_encode($v_userInfo->getId()) ?>">
                                 <?php echo $file->getUtilizador()->getNome() . "&nbsp;"; ?>
                             </a>
                         <?php }
@@ -72,8 +72,8 @@ if (isset($v_multimedias)) {
             } else if ($file->getTipo() == Geral::CONS_MULTIMEDIA_TIPO_OUTRO) {
                 ?>
                 <div class="w3-display-container mySlides">
-                    <div style="width:100%; height:500px; background-image:url(/intercolegial/web-files/default/images/outro.png); background-size:cover; background-position: center;">
-                        <!--<img src="/intercolegial/web-files/uploads/imoveis/<?php echo $file->getFicheiro(); ?>" alt="<?php echo $file->getDescricao(); ?>" style="width:100%">-->
+                    <div style="width:100%; height:500px; background-image:url(https://www.intercolegialtinatune.co.ao/web-files/default/images/outro.png); background-size:cover; background-position: center;">
+                        <!--<img src="https://www.intercolegialtinatune.co.ao/web-files/uploads/imoveis/<?php echo $file->getFicheiro(); ?>" alt="<?php echo $file->getDescricao(); ?>" style="width:100%">-->
                     </div>
                     <div class="w3-display-topleft w3-container w3-padding-16 w3-black">
                         <?php echo $file->getDescricao(); ?>
@@ -81,7 +81,7 @@ if (isset($v_multimedias)) {
                         if ($file->getUtilizador() != null) {
                             ?>
                             &nbsp;Carregado por: 
-                            <a href="/intercolegial/Utilizador/ver/<?php echo base64_encode("id") . '/' . base64_encode($v_userInfo->getId()) ?>">
+                            <a href="https://www.intercolegialtinatune.co.ao/Utilizador/ver/<?php echo base64_encode("id") . '/' . base64_encode($v_userInfo->getId()) ?>">
                                 <?php echo $file->getUtilizador()->getNome() . "&nbsp;"; ?>
                             </a>
                         <?php }

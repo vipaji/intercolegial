@@ -12,9 +12,9 @@ Class UtilizadorController extends Controller {
         $this->dados['title_page'] = "Utilizadores &bull; Oliva de Angola &#8482;";
         $this->dados['page_context'] = "Utilizadores";
         $this->dados['page_icon'] = "fa fa-users";
-        $this->dados['page_url'] = '/intercolegial/Utilizador/';
-        $this->dados['page_home'] = '/intercolegial/Dashboard/';
-        $this->dados['home_url'] = '/intercolegial/Dashboard/';
+        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Utilizador/';
+        $this->dados['page_home'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
+        $this->dados['home_url'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
     }
 
     /**
@@ -118,7 +118,7 @@ Class UtilizadorController extends Controller {
             //$utilizador = new Utilizador();
 
             if (isset($_FILES)) {
-                $uploadImagem = new UploadImagem($_FILES['foto_utilizador'], '../intercolegial/web-files/uploads/utilizadores/');
+                $uploadImagem = new UploadImagem($_FILES['foto_utilizador'], '..https://www.intercolegialtinatune.co.ao/web-files/uploads/utilizadores/');
 
                 $up = $uploadImagem->upload();
                 if ($up == TRUE) {
@@ -351,7 +351,7 @@ Class UtilizadorController extends Controller {
 
                 foreach ($files as $file) {
                     try {
-                        $upload = new Upload($file, '../intercolegial/web-files/uploads/documentos/');
+                        $upload = new Upload($file, '..https://www.intercolegialtinatune.co.ao/web-files/uploads/documentos/');
                         if ($upload->upload() == TRUE) {
 
                             $documento = new Documento();

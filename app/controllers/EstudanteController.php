@@ -12,8 +12,8 @@ Class EstudanteController extends Controller {
         $this->dados['title_page'] = "Estudantes &bull; Intercolegial Tina Tune &#8482;";
         $this->dados['page_context'] = "Estudante";
         $this->dados['page_icon'] = "fa fa-start";
-        $this->dados['page_url'] = '/intercolegial/Estudante/';
-        $this->dados['home_url'] = '/intercolegial/Dashboard/';
+        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Estudante/';
+        $this->dados['home_url'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
         $this->dados['id'] = 'escola';
     }
 

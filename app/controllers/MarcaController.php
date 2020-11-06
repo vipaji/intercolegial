@@ -12,8 +12,8 @@ Class MarcaController extends Controller {
         $this->dados['title_page'] = "Marca &bull; Oliva de Angola &#8482;";
         $this->dados['page_context'] = "Marca";
         $this->dados['page_icon'] = "fa fa-start";
-        $this->dados['page_url'] = '/intercolegial/Marca/';
-        $this->dados['home_url'] = '/intercolegial/Dashboard/';
+        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Marca/';
+        $this->dados['home_url'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
     }
 
     public function indexAction() {

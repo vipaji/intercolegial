@@ -13,8 +13,8 @@ Class ProdutoController extends Controller {
         $this->dados['title_page'] = 'Produto &bull; Oliva de Angola &#8482;';
         $this->dados['page_context'] = "Produto";
         $this->dados['page_icon'] = "fa fa-dashboard";
-        $this->dados['page_url'] = '/intercolegial/Produto/';
-        $this->dados['home_url'] = '/intercolegial/Dashboard/';
+        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Produto/';
+        $this->dados['home_url'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
     }
 
     public function indexAction() {
@@ -199,7 +199,7 @@ Class ProdutoController extends Controller {
 
                 foreach ($files as $file) {
                     try {
-                        $upload = new Upload($file, '../intercolegial/web-files/uploads/produtos/');
+                        $upload = new Upload($file, '..https://www.intercolegialtinatune.co.ao/web-files/uploads/produtos/');
                         if ($upload->upload() == TRUE) {
 
                             $multimedia = new Multimedia();
@@ -250,7 +250,7 @@ Class ProdutoController extends Controller {
             //$produto = new Produto();
 
             if (isset($_FILES)) {
-                $uploadImagem = new UploadImagem($_FILES['foto_produto'], '../intercolegial/web-files/uploads/produtos/');
+                $uploadImagem = new UploadImagem($_FILES['foto_produto'], '..https://www.intercolegialtinatune.co.ao/web-files/uploads/produtos/');
 
                 $up = $uploadImagem->upload();
                 if ($up == TRUE) {

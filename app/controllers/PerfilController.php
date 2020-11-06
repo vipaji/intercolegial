@@ -13,8 +13,8 @@ Class PerfilController extends Controller {
         $this->dados['title_page'] = 'Perfil &bull; Oliva de Angola &#8482;';
         $this->dados['page_context'] = "Perfil";
         $this->dados['page_icon'] = "fa fa-dashboard";
-        $this->dados['page_url'] = '/intercolegial/Perfil/';
-        $this->dados['home_url'] = '/intercolegial/Dashboard/';
+        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Perfil/';
+        $this->dados['home_url'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
     }
 
     public function indexAction() {
