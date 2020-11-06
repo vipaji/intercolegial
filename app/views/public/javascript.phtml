@@ -1,0 +1,170 @@
+<script src="/intercolegial/web-files/js/jquery.min.js"></script>
+	<script src="/intercolegial/web-files/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="/intercolegial/web-files/js/popper.min.js"></script>
+	<script src="/intercolegial/web-files/js/bootstrap.min.js"></script>
+	<script src="/intercolegial/web-files/js/jquery.easing.1.3.js"></script>
+	<script src="/intercolegial/web-files/js/jquery.waypoints.min.js"></script>
+	<script src="/intercolegial/web-files/js/jquery.stellar.min.js"></script>
+	<script src="/intercolegial/web-files/js/owl.carousel.min.js"></script>
+	<script src="/intercolegial/web-files/js/jquery.magnific-popup.min.js"></script>
+	<script src="/intercolegial/web-files/js/aos.js"></script>
+	<script src="/intercolegial/web-files/js/jquery.animateNumber.min.js"></script>
+	<script src="/intercolegial/web-files/js/scrollax.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	<script src="/intercolegial/web-files/js/google-map.js"></script>
+
+	<script src="/intercolegial/web-files/js/main.js"></script>
+
+	<script>
+
+    function inscricaoAjax() {
+    $.ajax
+            ({
+                type: 'POST',
+                url: '/intercolegial/Home/inscricao',
+                dataType: 'json',
+                data: {
+                    nome: $("#nome-estudante").val(),
+                    email: $("#email-estudante").val(),
+                    telefone: $("#telefone-estudante").val(),
+					escola: $("#escola").val(),
+					passe: $("#passe-estudante").val()
+                },
+                cache: false,
+                beforeSend: function (xhr) {
+                    $("#processando").show();
+                },
+                success: function (data) {
+                    //alert(data.codigo);
+                    if (data.codigo == 200) {
+                        
+                        $("#processando").hide();
+                        $("#divSucesso").show();
+                    }
+                    if (data.codigo == 300) {
+                        $("#processando").hide();
+                        $("#divEmailExistente").show();
+                    }
+                    if (data.codigo == 500) {
+                        $("#processando").hide();
+                        $("#divError").show();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    $("#processando").hide();
+                    $("#erro").show();
+
+                },
+                complete: function (xhr) {
+                    $("#nome-estudante").val("");
+                    $("#email-estudante").val("");
+                    $("#telefone-estudante").val("");
+					$("#escola").val("");
+					$("#passe-estudante").val("");
+                    $("#divVazio").hide();
+                }
+            });
+    }
+    $('#submit-email').click(function (event) {
+        if($("#nome-estudante").val()=="")
+        {
+            $("#nome-estudante").focus();
+            $("#divVazio").show();
+        }
+        else if($("#email-estudante").val()=="")
+        {
+            $("#email-estudante").focus();
+            $("#divVazio").show();
+        }
+        else if($("#telefone-estudante").val()=="")
+        {
+            $("#telefone-estudante").focus();
+            $("#divVazio").show();
+        }
+		else if($("#telefone-estudante").val()=="")
+        {
+            $("#passe-estudante").focus();
+            $("#divVazio").show();
+        }
+        else{
+            inscricaoAjax();
+        }
+    
+    })
+
+    function emailAjax() {
+    $.ajax
+            ({
+                type: 'POST',
+                url: '/intercolegial/Home/email',
+                dataType: 'json',
+                data: {
+                    nome: $("#nome").val(),
+                    email: $("#email").val(),
+                    assunto: $("#assunto").val(),
+                    mensagem: $("#mensagem").val()
+                },
+                cache: false,
+                beforeSend: function (xhr) {
+                    $("#processando").show();
+                },
+                success: function (data) {
+                    //alert(data.codigo);
+                    if (data.codigo == 200) {
+                        
+                        $("#processando").hide();
+                        $("#divSucesso").show();
+                    }
+                    if (data.codigo == 300) {
+                        $("#processando").hide();
+                        $("#divEmailExistente").show();
+                    }
+                    if (data.codigo == 500) {
+                        $("#processando").hide();
+                        $("#divError").show();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    $("#processando").hide();
+                    $("#erro").show();
+
+                },
+                complete: function (xhr) {
+                    $("#email").val("");
+                    $("#message").val("");
+                    $("#divVazio").hide();
+                }
+            });
+    }
+    $('#submit-email').click(function (event) {
+        if($("#nome").val()=="")
+        {
+            $("#nome").focus();
+            $("#divVazio").show();
+        }
+        else if($("#email").val()=="")
+        {
+            $("#email").focus();
+            $("#divVazio").show();
+        }
+        else if($("#assunto").val()=="")
+        {
+            $("#assunto").focus();
+            $("#divVazio").show();
+        }
+        else if($("#mensagem").val()=="")
+        {
+            $("#mensagem").focus();
+            $("#divVazio").show();
+        }
+        else{
+            emailAjax();
+        }
+    
+    })
+
+    function voltar()
+    {
+        window.history.back();
+    }
+</script>

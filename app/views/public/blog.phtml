@@ -1,0 +1,48 @@
+<?php
+if (isset($v_blogs)) {
+    if (empty($v_blogs)) {
+    }
+    else
+    {
+
+?>
+    <section class="ftco-section bg-light" id="blog-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5 pb-5">
+                <div class="col-md-7 heading-section text-center ftco-animate">
+                    <span class="subheading"></span>
+                    <h2 class="mb-4">Novidades</h2>
+                    <p></p>
+                </div>
+            </div>
+            <div class="row d-flex">
+                <?php
+                foreach ($v_blogs as $blog) {
+                ?>
+                    <div class="col-md-4 d-flex ftco-animate">
+                        <div class="blog-entry justify-content-end">
+                            <a href="<?= $v_page_url ?>blog/<?php echo base64_encode("id") . '/' . base64_encode($blog->getId()) ?>" class="block-20" style="background-image: url('<?= Geral::DIR_IMG_BLOG ?><?= $blog->getFoto() ?>');">
+                            </a>
+                            <div class="text mt-3 float-right d-block">
+                                <div class="d-flex align-items-center mb-3 meta">
+                                    <p class="mb-0">
+                                        <span class="mr-2"><?= $blog->getData() ?></span>
+                                        <a href="#" class="mr-2"><?= $blog->getUtilizador()->getNome() ?></a>
+                                        <!-- <a href="#" class="meta-chat"><span class="icon-chat"></span> 0</a>-->
+                                    </p>
+                                </div>
+                                <h3 class="heading"><a href="<?= $v_page_url ?>blog/<?php echo base64_encode("id") . '/' . base64_encode($blog->getId()) ?>"><?= $blog->getTitulo() ?></a></h3>
+                                <p style="color:#000000; text-align:justify;"><?= substr($blog->getTexto(), 0, 150) . "..." ?></p>
+                            </div>
+                        </div>
+                    </div>
+            <?php
+                    //echo $blog->getTitulo();
+                }
+            ?>
+            </div>
+        </div>
+    </section>
+    <?php
+     }
+}?>

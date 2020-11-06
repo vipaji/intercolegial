@@ -1,0 +1,108 @@
+<div class="col-md-9">
+  <div class="card">
+    <div class="card-header p-2">
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a class="nav-link active" href="#actividades" data-toggle="tab">Minhas actividades</a></li>
+        <?php
+        if (strtolower($v_userInfo->getPerfil()->getNome()) == Geral::CONS_PERFIL_TINA_TUNE) { ?>
+          <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Documentos</a></li>
+        <?php } ?>
+        <!--<li class="nav-item"><a class="nav-link" href="#definicoes" data-toggle="tab">Definições</a></li>-->
+      </ul>
+    </div><!-- /.card-header -->
+    <div class="card-body">
+      <div class="tab-content">
+        <div class="active tab-pane" id="actividades">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <!--<th>Operação</th>-->
+                <th>Descrição</th>
+                <th>Data</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              if (isset($v_logs)) {
+                if (empty($v_logs)) {
+              ?>
+                  <div class="alert alert-danger">
+                    <strong><span class="fa fa-info"></span></strong> Até o momento não temos actividades suas registadas
+                  </div>
+                <?php
+                }
+                $cont = 0;
+                foreach ($v_logs as $log) {
+                ?>
+                  <tr>
+                    <td><?php echo (++$cont); ?></td>
+                    <!--<td><?= $log->getOperacao(); ?></td>-->
+                    <td><?= $log->getDescricao(); ?></td>
+                    <td><?= $log->getDataHora(); ?></td>
+                  </tr>
+              <?php }
+              } ?>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- /.tab-pane -->
+        <div class="tab-pane" id="timeline">
+          <!-- The timeline -->
+          <div class="timeline timeline-inverse">
+            <a href="#" class="btn btn-default" title="Carregar Documentos" data-toggle="modal" data-target="#DocumentosLegais"><i class="fa fa fa-file fa-1x"></i> Carregar Documentos</a><hr>
+            <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <!--<th>Operação</th>-->
+                <th>Documento</th>
+                <th>Descrição</th>
+                <th>Data</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              if (isset($v_documentos)) {
+                if (empty($v_documentos)) {
+              ?>
+                  <div class="alert alert-danger">
+                    <strong><span class="fa fa-info"></span></strong> Até o momento não tens documentos carregados
+                  </div>
+                <?php
+                }
+                $cont = 0;
+                foreach ($v_documentos as $documento) {
+                ?>
+                  <tr>
+                    <td><?php echo (++$cont); ?></td>
+                    <td><a href="/intercolegial/web-files/uploads/documentos/<?php echo $documento->getFicheiro(); ?>" target="_new"><?php echo $documento->getDescricao(); ?></a></td>
+                    <td><?= $documento->getDescricao(); ?></td>
+                    <td><?= $documento->getData(); ?></td>
+                    
+                  </tr>
+              <?php }
+              } ?>
+            </tbody>
+          </table>
+          </div>
+        </div>
+        <!-- /.tab-pane -->
+        <!-- /.tab-pane -->
+        <div class="tab-pane" id="definicoes">
+          <form class="form-horizontal">
+            Nothing
+          </form>
+        </div>
+        <!-- /.tab-pane -->
+      </div>
+      <!-- /.tab-content -->
+    </div><!-- /.card-body -->
+  </div>
+  <!-- /.nav-tabs-custom -->
+</div>
+<?php
+include_once 'app/views/utilizador/modal/modal-uploadDocumentosLegais.phtml';
+?>

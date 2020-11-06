@@ -1,0 +1,12 @@
+ Options -Multiviews
+#Habilitar
+RewriteEngine on
+
+#Informa que todos os ficheiro que forem passado na url têm que funcionar (criando uma condição ex: home.php)
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+#Informa que todos os directorio que forem passado na url têm que funcionar
+RewriteCond %{SCRIPT_FILENAME} !-d
+
+#Criar uma regra (tudo que passar na url tem de ser levado no index)
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,NC,L]

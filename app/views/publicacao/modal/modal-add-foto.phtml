@@ -1,0 +1,34 @@
+<div class="modal fade" id="alterarfoto" tabindex="-1" role="dialog" aria-labelledby="alterarfotoTitulo" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <form id="demo-form" class="form-horizontal form-label-left" data-parsley-validate="" novalidate="" method="POST" action="<?= $v_page_url ?>novafoto" enctype="multipart/form-data">
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-photo"></i> Alterar <b>Foto de Perfil</b> do utilizador</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="foto_utilizador">Foto: 
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="file" id="foto_utilizador" name="foto_utilizador" class="form-control col-md-7 col-xs-12" required>
+                                    <input type="hidden" value="<?= $v_entity->getId(); ?>" name="id_utilizador">
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Gravar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>

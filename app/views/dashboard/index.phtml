@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title><?= $v_title_page; ?></title>
+
+  <?php
+  include_once 'app/views/public/adm/head.phtml';
+  ?>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <?php
+    include_once 'app/views/public/adm/topNavigation.phtml';
+    ?>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar elevation-4 sidebar-light-warning">
+      <!-- Brand Logo -->
+      <?php
+      include_once 'app/views/public/adm/logo.phtml';
+      ?>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <?php
+        include_once 'app/views/public/adm/userInfo.phtml';
+        ?>
+        <!-- Sidebar Menu -->
+        <?php
+        include_once 'app/views/public/menuLateral.phtml';
+        ?>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0 text-dark"><?= $v_page_context; ?></h1>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Info boxes -->
+          <?php
+          if (Method::lowerGeneral($v_userInfo->getPerfil()->getNome()) == Geral::CONS_PERFIL_ADMINISTRADOR) {
+          ?>
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-4">
+                <div class="info-box mb-3">
+                  <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">Estudantes</span>
+                    <span class="info-box-number">
+                      <?= $v_total_estudante; ?></span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+              <div class="col-12 col-sm-6 col-md-4">
+                <div class="info-box">
+                  <span class="info-box-icon bg-info elevation-1"><i class="fas fa-calendar-alt"></i></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Eventos</span>
+                    <span class="info-box-number">
+                      <?= $v_total_evento;?></span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+              <div class="col-12 col-sm-6 col-md-4">
+                <div class="info-box mb-3">
+                  <span class="info-box-icon bg-success elevation-1"><i class="fas fa-school"></i></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Escolas</span>
+                    <span class="info-box-number">
+                      <?= $v_total_escola; ?></span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+
+              <!-- fix for small devices only -->
+              <div class="clearfix hidden-md-up"></div>
+
+
+              <!--
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                  <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-user"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">Utilizadores</span>
+                    <span class="info-box-number">
+                    <? //$v_totalUtilizadores;?></span>
+                  </div>
+                </div>
+              </div>  
+            -->
+            </div>
+          <?php } ?>
+          <!-- /.row -->
+
+
+          <!-- /.row -->
+
+          <!-- Main row -->
+          <div class="row">
+            <!-- Left col -->
+            <div class="col-md-8">
+              <!-- MAP & BOX PANE -->
+
+
+
+              <!-- TABLE: LATEST ORDERS -->
+              <div class="card">
+                <div class="card-header border-transparent">
+                  <h3 class="card-title">Inscrições recentes</h3>
+
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <!--
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                      <i class="fas fa-times"></i>
+                    </button>
+                    -->
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                    <table class="table m-0">
+                      <thead>
+                        <tr>
+                          <th>Nome</th>
+                          <th>Escola</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        if (isset($v_estudantes)) {
+                          if (empty($v_estudantes)) { ?>
+                            <div class="alert alert-danger">
+                              <strong><span class="fa fa-info"></span></strong> Até o momento não temos estudantes solicitados.
+                            </div>
+                          <?php
+                          }
+                          foreach ($v_estudantes as $estudante) {
+                          ?>
+                            <tr>
+                              <td>
+                                <a href="/intercolegial/Estudante/ver/<?php echo base64_encode("id") . '/' . base64_encode($estudante->getId()) ?>">
+                                  <?= $estudante->getNome(); ?>
+                                </a>
+                              </td>
+                              <td>
+                                <a href="/intercolegial/Escola/ver/<?php echo base64_encode("id") . '/' . base64_encode($estudante->getEscola()) ?>">
+                                  <?= $estudante->getEscola()->getNome(); ?> (<?= $estudante->getEscola()->getTipo()->getNome(); ?>)
+                                </a>
+                              </td>
+                            </tr>
+                        <?php
+                          }
+                        } ?>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.table-responsive -->
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer clearfix">
+                  <a href="/intercolegial/Estudante/" class="btn btn-sm btn-secondary float-right">Ver todas</a>
+                </div>
+                <!-- /.card-footer -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+
+            <div class="col-md-4">
+              <!-- PRODUCT LIST -->
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Escolas recentes</h3>
+
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <!--
+                      <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    -->
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                  <ul class="products-list product-list-in-card pl-2 pr-2">
+                    <?php
+                    if (isset($v_escolas)) {
+                      if (empty($v_escolas)) { ?>
+                        <div class="alert alert-danger">
+                          <strong><span class="fa fa-info"></span></strong> Até o momento não temos escolas adicionadas.
+                        </div>
+                      <?php
+                      }
+                      foreach ($v_escolas as $escola) {
+                      ?>
+                        <li class="item">
+                          <div class="product-img">
+                            <img src='/intercolegial/web-files/adm/dist/img/default-150x150.png' alt='Product Image' class='img-size-50'>
+                          </div>
+                          <div class="product-info">
+                            <a href="/intercolegial/Escola/ver/<?php echo base64_encode("id") . '/' . base64_encode($escola->getId()) ?>" class="product-title"><?= $escola->getNome(); ?></a>
+                            <span class="product-description">
+                              <?= $escola->getTipo()->getNome(); ?>
+                            </span>
+                          </div>
+                        </li>
+                    <?php
+                      }
+                    }
+                    ?>
+                  </ul>
+                </div>
+                <!-- /.card-body -->
+                <!--
+                <div class="card-footer text-center">
+                  <a href="javascript:void(0)" class="uppercase">Ver todas</a>
+                </div>
+                -->
+                <?php
+                if (isset($v_escolas)) {
+                  if (!empty($v_escolas)) {
+                ?>
+                    <div class="card-footer clearfix">
+                      <a href="/intercolegial/Escola/" class="btn btn-sm btn-secondary float-right">Ver todas</a>
+                    </div>
+                <?php
+                  }
+                }
+                ?>
+                <!-- /.card-footer -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!--/. container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <?php
+    include_once 'app/views/public/adm/foot.phtml';
+    ?>
+
+  </div>
+  <!-- ./wrapper -->
+
+  <?php
+  include_once 'app/views/public/adm/javascript.phtml';
+  ?>
+</body>
+
+</html>

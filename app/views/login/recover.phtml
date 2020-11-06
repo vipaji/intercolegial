@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <?php
+    include_once 'app/views/public/login/head.phtml';
+  ?>
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <!--<a href="#"><b>Admin</b>LTE</a>-->
+    <img src="/intercolegial/web-files/images/logo.png" style="width:80%;" alt="Intercolegial Tina Tune"/>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg"></p>
+
+      <div>
+        <?php if (isset($v_erros) && !empty($v_erros)) { ?>
+          <div class="alert alert-danger" role="alert">
+            <?php
+            print_r($v_erros);
+            unset($v_erros);
+            ?>
+          </div>
+      <?php } ?>
+      </div>
+
+      <form action="/intercolegial/Login/login" method="POST">
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" required placeholder="E-mail de segurança" name="nome-utilizador" id="nome-utilizador">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-at"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-warning btn-block">Recuperar</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <div class="social-auth-links text-center mb-3">
+        <p>- OU -</p>
+        <!--
+        <a href="#" class="btn btn-block btn-primary">
+          <i class="fab fa-facebook mr-2"></i> Entrar usindo Facebook
+        </a>
+        
+        <a href="#" class="btn btn-block btn-danger">
+          <i class="fab fa-google-plus mr-2"></i> Entrar usindo Google+
+        </a>
+      -->
+      </div>
+      <!-- /.social-auth-links -->
+
+      <p class="mb-1">
+        <a href="/intercolegial/Login/">Iniciar sessão</a>
+      </p>
+      <!--<p class="mb-0">
+        <a href="register.html" class="text-center">Register a new membership</a>
+      </p>-->
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+<?php
+    include_once 'app/views/public/login/javascript.phtml';
+?>
+</body>
+</html>

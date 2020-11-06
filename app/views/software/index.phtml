@@ -1,0 +1,214 @@
+<?php
+include_once 'app/views/public/begin.phtml';
+echo ' <title>' . $v_title_page . '</title>';
+include_once 'app/views/public/head.phtml';
+include_once 'app/views/public/header.phtml';
+?>
+
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <!-- logo quick info -->
+                    <?php
+                    include_once 'app/views/public/logo.phtml';
+                    ?>
+                    <!-- /logo quick info -->
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <?php
+                include_once 'app/views/public/userInfo.phtml';
+                ?>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <?php
+                include_once 'app/views/public/menuLateral.phtml';
+                ?>
+                <!-- /sidebar menu -->
+
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <?php
+        include_once 'app/views/public/topNavigation.phtml';
+        ?>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3><i class="<?= $v_page_icon ?>"></i>&nbsp;<?= $v_page_context ?>  <small> Lista</small></h3>
+                    </div>
+
+                    <div class="title_right">
+                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                            <div class="input-group">
+
+                                <span class="input-group-btn">
+
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+
+                                <?php
+                                if ((Method::lowerGeneral($v_userInfo->getFuncao()->getNome()) == Geral::CONS_PERFIL_ADMINISTRADOR) || (Method::lowerGeneral($v_userInfo->getFuncao()->getNome()) == Geral::CONS_PERFIL_TECNICO)) {
+                                    ?>
+
+                                    <a  href="#" data-toggle="modal" data-target="#novoSoftWare" class="btn btn-info" title="Registar serviço"><i class="fa fa-plus"></i> Adicionar</a>
+                                    <?php
+                                }
+                                ?>
+                                <?php if (count($v_entities) > 0) { ?>
+                                    <a href="<?= $v_page_url ?>imprimirPdf/" target="_blank" class="btn btn-default btn-circle" title="Imprimir"><i class="fa fa-print fa-1x"></i> Imprimir</a> 
+                                    <div class="btn-group pull-right" style=" padding: 10px;">
+
+                                        <button class="btn btn-default" type="button" id="botaoExportar">
+                                            <i class="fa fa-file-excel-o"></i>
+                                            Exportar(.xls)
+                                        </button>
+
+                                    </div><?php } ?>       
+
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="x_content">
+
+
+                                <div class="table-responsive">
+                                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+
+                                        <thead>
+                                            <tr class="headings">
+                                                <th class="column-title" style="width: auto; text-align: center; vertical-align: middle;">#</th>
+                                                <th class="column-title" style=" text-align: center; ">Nome</th>
+                                                <th class="column-title" style=" text-align: center; ">Tipo</th>
+                                                <th class="column-title" style="text-align: center; ">Descrição</th>
+                                                <th class="column-title" style="text-align: center; ">Periodicidade</th>
+                                                <th class="column-title no-link last" style="text-align: center; "><span class="nobr">Opção</span></th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                            <?php
+                                            if (isset($v_entities)) {
+                                                if (empty($v_entities)) {
+                                                    ?>
+                                                <div class="alert alert-danger">
+                                                    <strong><span class="fa fa-info"></span></strong> Até o momento não temos software adicionado.
+                                                </div>
+                                                <?php
+                                            }
+                                            $cont = 0;
+                                            foreach ($v_entities as $v_entity) {
+                                                ?>
+                                                <tr class="even pointer">
+
+
+
+                                                    <td class="" style="width: auto; text-align: center; vertical-align: middle;">
+
+                                                        <?php
+                                                        echo ( ++$cont);
+                                                        ?>
+
+                                                    </td>
+                                                    <td class=" " style="width: auto; text-align: center; vertical-align: middle;"> <?= ucfirst(Method::upperGeneral($v_entity->getNome())); ?></td>
+                                                    <td class=" "style="width: auto; text-align: center; vertical-align: middle;">
+                                                        <?php 
+                                                            if($v_entity->getTipo()==Geral::CONS_TIPO_SOFTWARE)
+                                                            {
+                                                                echo "Software";
+                                                            }
+                                                            else if($v_entity->getTipo()==Geral::CONS_TIPO_DOMINIO)
+                                                            {
+                                                                echo "Domínio";
+                                                            }
+                                                            else
+                                                            {
+                                                                echo "<em style='color:#f00;'>Não identificado</em>";
+                                                            }
+                                                        ?>
+                                                    </td>
+                                                    <td class=" "style="width: auto; text-align: left; vertical-align: middle;"><?php echo $v_entity->getDescricao(); ?></td>
+                                                    <td class=" "style="width: auto; text-align: center; vertical-align: middle;">
+                                                        <?php echo Data::converteAMD2ptDMA($v_entity->getDataInicio()); ?>&nbsp; à &nbsp;<?php echo Data::converteAMD2ptDMA($v_entity->getDataFim()); ?><br>
+                                                        <?php
+                                                        $dataInicio = date('Y-m-d');
+                                                        //$result = $dataInicio->format('Y-m-d');
+                                                        $dataFim = $v_entity->getDataFim();
+                                                        //echo " (".Data::daDiferencaTempoParametro("$dataInicio 00:00:00", "$dataFim 23:59:59", Geral::CONS_PARAMETRO_TEMPO_DIAS)." dias restantes)";
+                                                        $restante=Data::daDiferencaTempoParametro("$dataInicio 00:00:00", "$dataFim 23:59:59", Geral::CONS_PARAMETRO_TEMPO_DIAS);
+                                                        if($restante<=15)
+                                                        {
+                                                            echo "<b style='color:#f00;'>Restam ".$restante. " dias</b>";
+                                                        }
+                                                        else if(($restante>=16)and($restante<=30))
+                                                        {
+                                                            echo "<b style='color:#FFA607;'>Restam ".$restante. " dias</b>";
+                                                        }
+                                                        else
+                                                        {
+                                                            echo "<b style='color:#00AD22;'>Restam ".$restante. " dias</b>";
+                                                        }
+                                                        ?>
+
+                                                    </td>
+                                                    <td class="last" style="width: auto; text-align: center; vertical-align: middle;">
+
+                                                        <div class="block-options">
+                                                            <a href="<?= $v_page_url ?>ver/<?php echo base64_encode("id") . '/' . base64_encode($v_entity->getId()) ?>" class="btn btn-default btn-circle" title="Ver"><i class="fa fa-eye fa-1x"></i></a> 
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <?php
+//Inclusão da Modal para adição de novo serviço 
+        include_once 'modal/modal-novo-software.php';
+// Fim da Modal para adição de novo serviço
+
+        include_once 'app/views/public/footer.phtml';
+        include_once 'app/views/public/javascript.phtml';
+        ?>
+        <script src="/Muxima_Helpdesk/web-files/default/js/validacao/parsley.js"></script>
+        <script src="/Muxima_Helpdesk/web-files/default/js/validacao/pt-pt.js"></script>
+        <?php
+        include_once 'app/views/public/end.phtml';
+        ?>

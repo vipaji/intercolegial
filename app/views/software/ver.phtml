@@ -1,0 +1,252 @@
+<?php
+include_once 'app/views/public/begin.phtml';
+echo ' <title>' . $v_title_page . '</title>';
+include_once 'app/views/public/head.phtml';
+include_once 'app/views/public/header.phtml';
+?>
+
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <!-- logo quick info -->
+                    <?php
+                    include_once 'app/views/public/logo.phtml';
+                    ?>
+                    <!-- /logo quick info -->
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <?php
+                include_once 'app/views/public/userInfo.phtml';
+                ?>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <?php
+                include_once 'app/views/public/menuLateral.phtml';
+                ?>
+                <!-- /sidebar menu -->
+
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <?php
+        include_once 'app/views/public/topNavigation.phtml';
+        ?>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3><i class="<?= $v_page_icon ?>"></i>&nbsp;<?= $v_page_context ?>  <small> Ver</small></h3>
+                    </div>
+
+                    <div class="title_right">
+                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                            <div class="input-group">
+                              <!-- <input type="text" class="form-control" placeholder="Procurar por..."> -->
+                                <span class="input-group-btn">
+                                    <!-- <button class="btn btn-default" type="button">Encontrar</button> -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h4 ><i class="fa fa-info-circle"></i> Informação  <span style="padding-left: 1%; font-size: 12px; color: black; "> 
+                                </h4>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="x_content">
+
+                                <form id="demo-form" class="form-horizontal form-label-left" data-parsley-validate="" novalidate="">
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Nome: <span style="color: red;"> *</span> 
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name ="nome" id="nome" required="required" disabled class="form-control col-md-7 col-xs-12" value="<?= ucfirst($v_entity->getNome()); ?>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Tipo: <span style="color: red;"> *</span></label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <?php 
+                                                if($v_entity->getTipo()==Geral::CONS_TIPO_SOFTWARE)
+                                                {
+                                                    ?>
+                                                    <input type="text" required="required" disabled class="form-control col-md-7 col-xs-12" value="Software">
+                                                    <?php
+                                                }
+                                                else if($v_entity->getTipo()==Geral::CONS_TIPO_DOMINIO)
+                                                {
+                                                    ?>
+                                                    <input type="text" required="required" disabled class="form-control col-md-7 col-xs-12" value="Domínio">
+                                                    <?php
+                                                }
+                                                else
+                                                {
+                                                    echo "<em style='color:#f00;'>Não identificado</em>";
+                                                }
+                                            ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descricao">Descrição: <span style="color: red;"> *</span> 
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <!--<input type="text" name ="descricao" id="descricao" required="required" disabled class="form-control col-md-7 col-xs-12" value="<?= ($v_entity->getDescricao()); ?>">-->
+                                            <textarea rows="3" name="descricao" id="descricao" required="required" disabled class="form-control col-md-7 col-xs-12"><?= $v_entity->getDescricao(); ?></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descricao">Periodicidade: <span style="color: red;"> *</span> 
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <?php echo Data::converteAMD2ptDMA($v_entity->getDataInicio()); ?>&nbsp; à &nbsp;<?php echo Data::converteAMD2ptDMA($v_entity->getDataFim()); ?><br>
+                                                        <?php
+                                                        $dataInicio = date('Y-m-d');
+                                                        //$result = $dataInicio->format('Y-m-d');
+                                                        $dataFim = $v_entity->getDataFim();
+                                                        //echo " (".Data::daDiferencaTempoParametro("$dataInicio 00:00:00", "$dataFim 23:59:59", Geral::CONS_PARAMETRO_TEMPO_DIAS)." dias restantes)";
+                                                        $restante=Data::daDiferencaTempoParametro("$dataInicio 00:00:00", "$dataFim 23:59:59", Geral::CONS_PARAMETRO_TEMPO_DIAS);
+                                                        if($restante<=15)
+                                                        {
+                                                            echo "<b style='color:#f00;'>Restam ".$restante. " dias</b>";
+                                                        }
+                                                        else if(($restante>=16)and($restante<=30))
+                                                        {
+                                                            echo "<b style='color:#FFA607;'>Restam ".$restante. " dias</b>";
+                                                        }
+                                                        else
+                                                        {
+                                                            echo "<b style='color:#00AD22;'>Restam ".$restante. " dias</b>";
+                                                        }
+                                                        ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-3">
+                                            <a  onclick="Voltar();" class="btn btn-default btn-circle" title="Voltar"><i class="fa fa-chevron-left"></i><strong> Voltar</strong></a> 
+                                            <?php
+                                            if (Method::lowerGeneral($v_userInfo->getFuncao()->getNome()) == Geral::CONS_PERFIL_ADMINISTRADOR) {
+                                                ?>
+                                                <a style="cursor:pointer;" data-toggle="modal" data-target="#editarSoftWare" class="btn btn-warning btn-circle" title="Editar"><i class="fa fa-edit"></i> Editar</a> 
+                                                <a  href="#" data-toggle="modal" data-target="#eliminarSoftWare" class="btn btn-danger btn-circle" title="Eliminar"><i class="fa fa-remove"></i> Eliminar</a>
+                                                <?php
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h4 ><i class="fa fa-clock"></i> Histórico  <span style="padding-left: 1%; font-size: 12px; color: black; "> 
+                                </h4>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="x_content">
+
+                                <!-- Histórico de Softwares & Licenças -->
+                                <div class="table-responsive">
+                                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+
+                                        <thead>
+                                            <tr class="headings">
+                                                <th class="column-title" style="width: auto; text-align: center; vertical-align: middle;">#</th>
+                                                <th class="column-title" style="text-align: center; ">Utilizador</th>
+                                                <!--<th class="column-title" style="text-align: center; ">Descrição</th>-->
+                                                <th class="column-title" style="text-align: center; ">Data</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                            <?php
+                                            if (isset($v_historicos)) {
+                                                if (empty($v_historicos)) {
+                                                    ?>
+                                                <div class="alert alert-danger">
+                                                    <strong><span class="fa fa-info"></span></strong> Software ou licença sem histórico.
+                                                </div>
+                                                <?php
+                                            }
+                                            $cont = 0;
+                                            foreach ($v_historicos as $historico) {
+                                                ?>
+                                                <tr class="even pointer">
+
+                                                    <td class="" style="width: auto; text-align: center; vertical-align: middle;">
+                                                        <?php
+                                                        echo ( ++$cont);
+                                                        ?>
+                                                    </td>
+                                                    <td class=" " style="width: auto; text-align: center; vertical-align: middle;"><?= $historico->getUtilizador()->getNome()?></td>
+                                                    <!--<td class=" " style="width: auto; text-align: left; vertical-align: middle;"><?= $historico->getObservacao()?></td>-->
+                                                    <td class=" "style="width: auto; text-align: center; vertical-align: middle;"><?= $historico->getDataHora()?></td>
+                                                </tr>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- // Histórico de Softwares & Licenças -->
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+<?php
+//Inclusão da Modal para edição de software
+include_once 'modal/modal-editar-software.php';
+// Fim da Modal para edição de software
+//Inclusão da Modal para eliminação de software 
+include_once 'modal/modal-eliminar-software.phtml';
+// Fim da Modal para eliminação de software
+
+include_once 'app/views/public/footer.phtml';
+include_once 'app/views/public/javascript.phtml';
+?>
+        <script src="/Muxima_Helpdesk/web-files/default/js/validacao/parsley.js"></script>
+        <script src="/Muxima_Helpdesk/web-files/default/js/validacao/pt-pt.js"></script>
+        <?php
+        include_once 'app/views/public/end.phtml';
+        ?>
+
+

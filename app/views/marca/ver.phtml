@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title><?= $v_title_page;?></title>
+
+  <?php
+    include_once 'app/views/public/adm/head.phtml';
+  ?>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <?php
+      include_once 'app/views/public/adm/topNavigation.phtml';
+    ?>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar elevation-4 sidebar-light-warning">
+      <!-- Brand Logo -->
+      <?php
+        include_once 'app/views/public/adm/logo.phtml';
+      ?>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <?php
+        include_once 'app/views/public/adm/userInfo.phtml';
+        ?>
+        <!-- Sidebar Menu -->
+        <?php
+        include_once 'app/views/public/menuLateral.phtml';
+        ?>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0 text-dark"><?= $v_page_context;?></h1>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Main row -->
+          <div class="row">
+            <!-- / Corpo da página INÍCIO -->
+
+            <div class="col-6">
+              <div class="card">
+
+              <form role="form" id="formMarca" method="POST">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="nome-<?= $v_page_context;?>">Nome</label>
+                    <input type="text" name="nome" class="form-control" id="nome-<?= $v_page_context;?>" placeholder="Nome do <?= $v_page_context;?>" disabled value="<?= $v_entity->getNome(); ?>">
+                  </div>
+                  <div class="form-group">
+                    <label for="descricao-<?= $v_page_context;?>">Descrição</label>
+                    <textarea name="descricao" rows="4" class="form-control" id="descricao-<?= $v_page_context;?>" placeholder="Descrição do <?= $v_page_context;?>" disabled><?= rtrim(ltrim($v_entity->getDescricao())); ?></textarea>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+                <!--<div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Gravar <?= $v_page_context;?></button>
+                </div>-->
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                  <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                    <a href="<?=$v_page_url ?>" class="btn btn-default btn-circle" title="Voltar"><i
+                        class="fa fa-chevron-left"></i><strong> Voltar</strong></a>
+                    <a href="<?=$v_page_url ?>editar/<?php echo base64_encode("id") . '/' . base64_encode($v_entity->getId()) ?>"
+                      class="btn btn-warning btn-circle" title="Editar"><i class="fa fa-edit"></i></a>
+                    <a href="<?=$v_page_url ?>eliminar/<?php echo base64_encode("id") . '/' . base64_encode($v_entity->getId()) ?>"
+                      class="btn btn-danger btn-circle" title="Eliminar"><i class="fa fa-trash"></i></a>
+                  </div>
+                </div>
+              </form>
+              </div>
+            </div>
+            <!-- / Corpo da página FIM -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!--/. container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <?php
+    include_once 'app/views/public/adm/foot.phtml';
+    ?>
+
+  </div>
+  <!-- ./wrapper -->
+
+  <?php
+    include_once 'app/views/public/adm/javascript.phtml';
+    include_once 'app/views/public/adm/datatables.phtml';
+  ?>
+</body>
+
+</html>

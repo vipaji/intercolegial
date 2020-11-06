@@ -1,0 +1,132 @@
+<div class="x_title text-right">
+    <?php
+    if(Method::lowerGeneral($v_userInfo->getPerfil()->getNome()) === Geral::CONS_PERFIL_ADMINISTRADOR) {
+        ?>
+        <a href="#"  class="btn btn-default" title="Carregar ficheiro" data-toggle="modal" data-target="#UploadImagem"><i class="fa fa fa-plus-circle fa-1x"></i> Carregar foto para o produto</a>
+        <hr><?php
+    }
+    ?> 
+
+</div>
+
+<!-- Fixando -->
+<?php
+if (isset($v_multimedias)) {
+    if (empty($v_multimedias)) {
+        ?>
+        <div class="alert alert-danger">
+            <strong></strong> Não temos fotos adicionados ao produto. <a href="#" class="alert-link"></a>
+        </div>
+        <?php
+    }
+    ?>
+    <div class="w3-content w3-display-container">
+        <?php
+        foreach ($v_multimedias as $file) {
+            ?>
+            <?php
+            if ($file->getTipo() == Geral::CONS_MULTIMEDIA_TIPO_IMAGEM) {
+                ?>
+                <div class="w3-display-container mySlides">
+                    <div style="width:100%; height:500px; background-image:url(<?= Geral::DIR_IMG_PRODUTOS?><?php echo $file->getFicheiro(); ?>); background-size:cover; background-position: center;">
+                        <!--<img src="/intercolegial/web-files/uploads/imoveis/<?php echo $file->getFicheiro(); ?>" alt="<?php echo $file->getDescricao(); ?>" style="width:100%">-->
+                    </div>
+                    <div class="w3-display-topleft w3-container w3-padding-16 w3-black">
+                        <?php echo $file->getDescricao(); ?>
+                        <?php
+                        if ($file->getUtilizador() != null) {
+                            ?>
+                            &nbsp;Carregado por: 
+                            <a href="/intercolegial/utilizador/ver/<?php echo base64_encode("id") . '/' . base64_encode($v_userInfo->getId()) ?>">
+                                <?php echo $file->getUtilizador()->getNome() . "&nbsp;"; ?>
+                            </a>
+                        <?php }
+                        ?>
+                        &bull;&nbsp;Data: <?php echo $file->getData(); ?>
+                        <a href="<?= $v_page_url ?>eliminarMultimedia/<?php echo base64_encode("id_produto") . '/' . base64_encode($file->getChave()) . '/' . base64_encode("id") . '/' . base64_encode($file->getId()) ?>" title="Eliminar imagem"><i class="fa fa-trash"></i> </a>
+                    </div>
+                </div>
+                <?php
+            } else if ($file->getTipo() == Geral::CONS_MULTIMEDIA_TIPO_VIDEO) {
+                ?>
+                <div class="w3-display-container mySlides">
+                    <div style="width:100%; height:500px; background-image:url(/intercolegial/web-files/default/images/video.png); background-size:cover; background-position: center;">
+                        <!--<img src="/intercolegial/web-files/uploads/imoveis/<?php echo $file->getFicheiro(); ?>" alt="<?php echo $file->getDescricao(); ?>" style="width:100%">-->
+                    </div>
+                    <div class="w3-display-topleft w3-container w3-padding-16 w3-black">
+                        <?php echo $file->getDescricao(); ?></span>
+                        <?php
+                        if ($file->getUtilizador() != null) {
+                            ?>
+                            &nbsp;Carregado por: 
+                            <a href="/intercolegial/utilizador/ver/<?php echo base64_encode("id") . '/' . base64_encode($v_userInfo->getId()) ?>">
+                                <?php echo $file->getUtilizador()->getNome() . "&nbsp;"; ?>
+                            </a>
+                        <?php }
+                        ?>
+                        &bull;&nbsp;Data: <?php echo $file->getData(); ?>
+                        <a href="<?= $v_page_url ?>eliminarMultimedia/<?php echo base64_encode("id_imovel") . '/' . base64_encode($file->getChave()) . '/' . base64_encode("id") . '/' . base64_encode($file->getId()) ?>" title="Eliminar vídeo"><i class="fa fa-trash"></i> </a>
+                    </div>
+                </div>
+                <?php
+            } else if ($file->getTipo() == Geral::CONS_MULTIMEDIA_TIPO_OUTRO) {
+                ?>
+                <div class="w3-display-container mySlides">
+                    <div style="width:100%; height:500px; background-image:url(/intercolegial/web-files/default/images/outro.png); background-size:cover; background-position: center;">
+                        <!--<img src="/intercolegial/web-files/uploads/imoveis/<?php echo $file->getFicheiro(); ?>" alt="<?php echo $file->getDescricao(); ?>" style="width:100%">-->
+                    </div>
+                    <div class="w3-display-topleft w3-container w3-padding-16 w3-black">
+                        <?php echo $file->getDescricao(); ?>
+                        <?php
+                        if ($file->getUtilizador() != null) {
+                            ?>
+                            &nbsp;Carregado por: 
+                            <a href="/intercolegial/Utilizador/ver/<?php echo base64_encode("id") . '/' . base64_encode($v_userInfo->getId()) ?>">
+                                <?php echo $file->getUtilizador()->getNome() . "&nbsp;"; ?>
+                            </a>
+                        <?php }
+                        ?>
+                        &bull;&nbsp;Data: <?php echo $file->getData(); ?>
+                        <a href="<?= $v_page_url ?>eliminarMultimedia/<?php echo base64_encode("id_imovel") . '/' . base64_encode($file->getChave()) . '/' . base64_encode("id") . '/' . base64_encode($file->getId()) ?>" title="Eliminar ficheiro"><i class="fa fa-trash"></i> </a>
+                    </div>
+                </div>
+                <?php
+            } 
+            
+            ?>
+            <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+
+            <script>
+                var slideIndex = 1;
+                showDivs(slideIndex);
+
+                function plusDivs(n) {
+                    showDivs(slideIndex += n);
+                }
+
+                function showDivs(n) {
+                    var i;
+                    var x = document.getElementsByClassName("mySlides");
+                    if (n > x.length) {
+                        slideIndex = 1;
+                    }
+                    if (n < 1) {
+                        slideIndex = x.length;
+                    }
+                    for (i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";
+                    }
+                    x[slideIndex - 1].style.display = "block";
+                }
+            </script>
+            <?php
+        }
+        ?>
+    </div>
+    <?php
+} else {
+    echo "<span style='color:#f00;'>Não tem fotos para mostrar.</span>";
+}
+?>
+<!-- // Fixando -->

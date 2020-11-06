@@ -1,0 +1,26 @@
+<?php
+    if(strtolower($v_userInfo->getPerfil()->getNome()) == Geral::CONS_PERFIL_ADMINISTRADOR)
+    {
+        include_once 'menu/administrador.phtml';
+    }
+    else if(strtolower($v_userInfo->getPerfil()->getNome()) == Geral::CONS_PERFIL_GESTOR)
+    {
+        include_once 'menu/gestor.phtml';
+    }
+    else if(strtolower($v_userInfo->getPerfil()->getNome()) == Geral::CONS_PERFIL_ALUNO)
+    {
+        include_once 'menu/aluno.phtml';
+    }
+    else if(strtolower($v_userInfo->getPerfil()->getNome()) == Geral::CONS_PERFIL_PROFESSOR)
+    {
+        include_once 'menu/professor.phtml';
+    }
+    else if(strtolower($v_userInfo->getPerfil()->getNome()) == Geral::CONS_PERFIL_TINA_TUNE)
+    {
+        include_once 'menu/tinatune.phtml';
+    }
+    else if (strtolower($v_userInfo->getPerfil()->getNome()) == Geral::CONS_PERFIL_OPERADOR)
+    {
+        include_once 'menu/operador.phtml';
+    }
+?>

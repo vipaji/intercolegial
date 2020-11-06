@@ -1,0 +1,31 @@
+<!-- Modal Upload foto -->
+<div class="modal fade" id="DocumentosLegais" tabindex="-1" role="dialog" aria-labelledby="DocumentosLegais" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-file fa-1x"></i> Carregar Documentos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="dropzone" method="POST" action="<?= $v_page_url ?>uploadMultimedia" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="alert alert-danger" id="label-erros" style="display:none;">
+                        <strong></strong> <span id="info-erros"></span> <a href="#" class="alert-link"></a>
+                    </div>
+                    <input name="file[]" id="multiplo" type="file" multiple required />
+                    <input type="hidden" id="id_utilizador" name="id_utilizador" value="<?= base64_encode($v_entity->getId()); ?>">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <button class="btn btn-default" type="reset">Limpar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<!-- // Modal Upload imagem -->

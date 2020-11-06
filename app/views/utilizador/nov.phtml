@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<?php
+        echo' <title>' . $v_title_page . '</title>';
+        include_once 'app/views/public/adm_cabecalho.phtml';
+        ?>
+		<body>
+			<div id="wrapper">
+				<!----->
+				<nav class="navbar-default navbar-static-top" role="navigation">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<h1>
+							<a class="navbar-brand" href="#">EDITOR <span class="fa fa-edit"></span></a>
+						</h1>
+                    </div>
+                    <?php include_once 'app/views/public/pesquisar.phtml'; ?>
+					
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<!-- Menu TOPO -->
+					<?php include_once 'app/views/public/menu_topo.phtml'; ?>
+					<!-- /.Menu TOPO -->
+					<div class="clearfix"></div>
+					<div class="navbar-default sidebar" role="navigation">
+                        <!-- Menu PRINCIPAL -->
+                        <?php include_once 'app/views/public/menu/menu.phtml'; ?>
+                        <!-- / Menu PRINCIPAL -->
+					</div>
+				</nav>
+							<div id="page-wrapper" class="gray-bg dashbard-1">
+								<div class="content-main">
+									<!--banner-->
+									<div class="banner">
+										<h2>
+                                            <a href="<?= $v_page_url ?>" class="btn btn-info btn-circle" title="Voltar"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
+										</h2>
+									</div>
+									<!--//banner-->
+									<!--faq-->
+									<div class="blank">
+										<div class="blank-page">
+
+
+                                        <form id="demo-form" autocomplete="off" class="form-horizontal form-label-left" data-parsley-validate="" novalidate="" method="POST" action="<?= $v_page_url ?>registar" enctype="multipart/form-data">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">Nome: <span style="color: red;"> *</span> 
+                                                </label>
+                                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                                    <input type="text" name ="nome" id="nome" required="" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">E-mail: <span style="color: red;"> *</span> 
+                                                </label>
+                                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                                    <input type="email" name="email" id="email" required="" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">Telefone: <span style="color: red;"> *</span> 
+                                                </label>
+                                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                                    <input type="text" name="telefone" id="telefone" required="" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">Senha: <span style="color: red;"> *</span> 
+                                                </label>
+                                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                                    <input type="password" name="password" id="password" required="" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="funcao_utilizador">Perfil: <span style="color: red;"> *</span> 
+                                                </label>
+                                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                                    <select id="funcao"  name ="funcao" class="form-control" required="">
+                                                        <option value="" selected="">---</option>
+                                                        <?php
+                                                        $v_funcoes = (isset($v_funcoes) ? ($v_funcoes) : (array()));
+                                                        foreach ($v_funcoes as $funcao) {
+                                                            echo '<option value="' . $funcao->getId() . '">' . ucfirst(Method::lowerGeneral($funcao->getNome())) . '</option> ';
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="ln_solid"></div>
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                                    <button type="submit" class="btn btn-success" style="background-color: #6caa0d; border-color:#6caa0d; "><i class="fa fa-check"></i> Gravar</button>
+                                                    <button class="btn btn-default" type="reset"><i class="fa fa-eraser"></i> Limpar</button>
+                                                </div>
+                                            </div>
+                                        </form>
+
+
+										</div>
+									</div>
+									<!--//faq-->
+									<!---->
+                                    <!-- footer -->
+                                    <?php include_once 'app/views/public/adm_footer.phtml'; ?>
+                                    <!-- /footer -->
+								</div>
+							</div>
+            <div class="clearfix"></div>
+            </div>
+            <!---->
+			<!--scrolling js-->
+			<?php include_once 'app/views/public/adm_javascript.phtml'; ?>
+            <script src="/autenticador/web-files/adm/js/validacao/parsley.js"></script>
+            <script src="/autenticador/web-files/adm/js/validacao/pt-pt.js"></script>
+            <!--//scrolling js-->
+        </body>
+</html>
+

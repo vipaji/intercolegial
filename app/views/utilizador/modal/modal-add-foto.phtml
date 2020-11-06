@@ -1,0 +1,45 @@
+<div class="modal fade" id="alterarfoto" tabindex="-1" role="dialog" aria-labelledby="alterarfotoTitulo" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-file-o fa-1x"></i> Carregar foto para o Utilizador</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="label-erro" style="display:none;">
+                    <strong></strong> <span id="info-erro"></span> <a href="#" class="alert-link"></a>
+                </div>
+                <form id="upload-foto" class="form-horizontal form-label-left" data-parsley-validate="" novalidate="" method="POST" action="<?= $v_page_url ?>novafoto" enctype="multipart/form-data">
+                    <input type="file" id="foto_utilizador" name="foto_utilizador" class="form-control col-md-7 col-xs-12" required>
+                    <input type="hidden" value="<?= $v_entity->getId(); ?>" name="id_utilizador">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id = "submit-upload" type="button" class="btn btn-success" onclick="return verificar();">Gravar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    function verificar()
+    {
+        if($("#foto_utilizador").val()=="")
+        {
+            $("#label-erro").show();
+            $("#info-erro").text("Escolha um ficheiro de imagem para continuar...");
+            return false;
+        }
+        else
+        {
+            var form = document.getElementById("upload-foto");
+            document.getElementById("submit-upload").addEventListener("click", function () {
+                form.submit();
+            });return true;
+        }
+    }
+</script>

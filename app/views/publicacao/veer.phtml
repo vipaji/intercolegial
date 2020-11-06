@@ -1,0 +1,225 @@
+<?php
+include_once 'app/views/public/begin.phtml';
+echo ' <title>' . $v_title_page . '</title>';
+include_once 'app/views/public/head.phtml';
+include_once 'app/views/public/header.phtml';
+?>
+
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <!-- logo quick info -->
+                    <?php
+                    include_once 'app/views/public/logo.phtml';
+                    ?>
+                    <!-- /logo quick info -->
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <?php
+                include_once 'app/views/public/userInfo.phtml';
+                ?>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <?php
+                include_once 'app/views/public/menuLateral.phtml';
+                ?>
+                <!-- /sidebar menu -->
+
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <?php
+        include_once 'app/views/public/topNavigation.phtml';
+        ?>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3><i class="<?= $v_page_icon ?>"></i>&nbsp;<?= $v_page_context ?>  <small> Ver</small></h3>
+                    </div>
+
+                    <div class="title_right">
+                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                            <div class="input-group">
+                              <!-- <input type="text" class="form-control" placeholder="Procurar por..."> -->
+                                <span class="input-group-btn">
+                                    <!-- <button class="btn btn-default" type="button">Encontrar</button> -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h4 ><i class="fa fa-info-circle"></i> Dados de utilizador  <span style="padding-left: 1%; font-size: 12px; color: black; "> 
+                                </h4>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="x_content">
+
+                                <form id="demo-form" class="form-horizontal form-label-left" data-parsley-validate="" novalidate="">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="foto_utilizador">Foto</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <?php
+                                            if (isset($v_entity)) {
+                                                $foto = $v_entity->getFoto();
+                                                if (!$v_entity->getFoto() == null) {
+                                                    echo '<img class="img-responsive avatar-view" src="' . Geral::DIR_IMG_UTIZADORES . $foto . '" alt="Foto de ' . $v_entity->getNome() . '" width="120" height="120" title="Foto de ' . $v_entity->getNome() . '" />';
+                                                } else {
+                                                    echo '<img class="img-responsive avatar-view" src="' . Geral::DIR_IMG_UTIZADORES . 'm.jpg"  alt="Foto de ' . $v_entity->getNome() . '" width="120" height="120"  title="Foto de ' . $v_entity->getNome() . '"  />';
+                                                }
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome_utilizador">Nome: <span style="color: red;"> *</span> 
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name ="nome_utilizador" id="nome_utilizador" required="required" disabled class="form-control col-md-7 col-xs-12" value="<?= ucfirst($v_entity->getNome()); ?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email_utilizador">E-mail: <span style="color: red;"> *</span> 
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name ="email_utilizador" id="email_utilizador" required="required" disabled class="form-control col-md-7 col-xs-12" value="<?= $v_entity->getEmail(); ?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password_utilizador">Senha: <span style="color: red;"> *</span></label>
+                                        <div class="col-md-4 col-sm-4 col-xs-4">
+                                            <input type="password" name ="password_utilizador" id="password_utilizador" required="required" disabled class="form-control col-md-7 col-xs-12" value="<?= $v_entity->getPassword(); ?>">
+                                        </div>
+                                        <?php
+                                            if (Method::lowerGeneral($v_userInfo->getFuncao()->getNome()) == Geral::CONS_PERFIL_ADMINISTRADOR)
+                                            {
+                                                ?>
+                                                <a href="<?= $v_page_url ?>redifinir/<?php echo base64_encode("id") . '/' . base64_encode($v_entity->getId()) ?>" class="btn btn-info btn-circle" title="Redifinir"><i class="fa fa-refresh"></i> Redifinir</a>
+                                                <?php
+                                            }
+                                        ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="funcao">Função: <span style="color: red;"> *</span> 
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select id="funcao_utilizador"  name ="funcao_utilizador" class="form-control" required="" disabled>
+
+                                                <?php
+                                                $v_funcoes = (isset($v_funcoes) ? ($v_funcoes) : (array()));
+                                                foreach ($v_funcoes as $funcao) {
+                                                    echo '<option value="' . $funcao->getId() . '" ' . ($funcao->getId() == $v_entity->getFuncao()->getId() ? 'selected' : '') . '>' . ucfirst(Method::lowerGeneral($funcao->getNome())) . '</option> ';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Estado: <span style="color: red;"> *</span> 
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select id="estado_utilizador"  name ="estado_utilizador" class="form-control" required="" disabled>
+                                                <?php
+                                                echo '<option value="' . Geral::CONS_UTILIZADOR_ACTIVADO . '" ' . (Geral::CONS_UTILIZADOR_ACTIVADO == $v_entity->getEstado() ? 'selected' : '') . '>Activado</option> ';
+
+                                                echo '<option value="' . Geral::CONS_UTILIZADOR_DESACTIVADO . '" ' . (Geral::CONS_UTILIZADOR_DESACTIVADO == $v_entity->getEstado() ? 'selected' : '') . '>Desactivado</option> ';
+                                                ?>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">Empresa: <span style="color: red;"> *</span> 
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="" id="" required="required" disabled class="form-control col-md-7 col-xs-12" value="<?= $v_entity->getEmpresa() == null ? "" : $v_entity->getEmpresa()->getNome(); ?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">Departamento: <span style="color: red;"> *</span> 
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name ="" id="" required="required" disabled class="form-control col-md-7 col-xs-12" value="<?= $v_entity->getDepartamento() == null ? "" : $v_entity->getDepartamento()->getNome(); ?>">
+                                        </div>
+                                    </div><div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">Cargo: <span style="color: red;"> *</span> 
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name ="" id="" required="required" disabled class="form-control col-md-7 col-xs-12" value="<?= $v_entity->getCargo() == null ? "" : $v_entity->getCargo()->getNome(); ?>">
+                                        </div>
+                                    </div>
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-3">
+                                            <a style="cursor:pointer;" onclick="Voltar();" class="btn btn-default btn-circle" title="Voltar"><i class="fa fa-chevron-left"></i><strong> Voltar</strong></a> 
+                                            <?php
+                                            if (Method::lowerGeneral($v_userInfo->getFuncao()->getNome()) == Geral::CONS_PERFIL_GESTOR) {
+                                            }
+                                            ?>
+
+                                            <?php
+                                            if (Method::lowerGeneral($v_userInfo->getFuncao()->getNome()) == Geral::CONS_PERFIL_ADMINISTRADOR) {
+                                                ?>
+                                                <a  href="#" class="btn btn-warning btn-circle" title="Editar" data-toggle="modal" data-target="#editarUtilizador"><i class="fa fa-edit"></i> Editar</a> 
+                                                <a  href="#" class="btn btn-danger btn-circle" title="Eliminar" data-toggle="modal" data-target="#eliminarUtilizador"><i class="fa fa-remove"></i> Eliminar</a>
+                                                <?php
+                                            }
+                                            ?>
+
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+
+
+
+        <?php
+// Modal de registar utilizador 
+        include_once 'app/views/utilizador/modal/modal_editar.phtml';
+// Fim Modal de registar utilizador 
+        // Modal de registar utilizador 
+        include_once 'app/views/utilizador/modal/modal_eliminar.phtml';
+// Fim Modal de registar utilizador 
+        ?>
+
+
+        <?php
+        include_once 'app/views/public/footer.phtml';
+        include_once 'app/views/public/javascript.phtml';
+        include_once 'app/views/public/end.phtml';
+        ?>
+
+

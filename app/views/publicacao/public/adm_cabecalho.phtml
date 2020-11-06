@@ -1,0 +1,40 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href="/autenticador/web-files/adm/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<link href="/autenticador/web-files/adm/css/style.css" rel='stylesheet' type='text/css' />
+<link href="/autenticador/web-files/adm/css/font-awesome.css" rel="stylesheet"> 
+<script src="/autenticador/web-files/adm/js/jquery.min.js"> </script>
+<script src="/autenticador/web-files/adm/js/bootstrap.min.js"> </script>
+<script src="/autenticador/web-files/datatables/datatables.min.js"> </script>
+<script src="/autenticador/web-files/datatables/datatables.min.css"> </script>
+  
+<!-- Mainly scripts -->
+<script src="/autenticador/web-files/adm/js/jquery.metisMenu.js"></script>
+<script src="/autenticador/web-files/adm/js/jquery.slimscroll.min.js"></script>
+<!-- Custom and plugin javascript -->
+<link href="/autenticador/web-files/adm/css/custom.css" rel="stylesheet">
+<script src="/autenticador/web-files/adm/js/custom.js"></script>
+<script src="/autenticador/web-files/adm/js/screenfull.js"></script>
+		<script>
+		$(function () {
+			$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+			if (!screenfull.enabled) {
+				return false;
+			}
+
+			$('#toggle').click(function () {
+				screenfull.toggle($('#container')[0]);
+			});
+			
+
+			
+		});
+		</script>
+
+
+
+</head>

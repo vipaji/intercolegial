@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<?php
+include_once 'app/views/public/head.phtml';
+include_once 'app/views/public/adm/selectorCSS.phtml';
+?>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+		<div class="container">
+			<!--<a class="navbar-brand" href="index.html">Meet<span>Up.</span></a>-->
+			<a class="navbar-brand" href="/intercolegial/Home/"><img src="/intercolegial/web-files/images/logo_front.png" style="width: 30%;"></span></a>
+			<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="oi oi-menu"></span> Menu
+			</button>
+
+			<div class="collapse navbar-collapse" id="ftco-nav">
+				<ul class="navbar-nav nav ml-auto">
+					<li class="nav-item"><a href="#home-section" class="nav-link"><span>Início</span></a></li>
+					<li class="nav-item"><a href="#about-section" class="nav-link"><span>Torneio intercolegial</span></a></li>
+					<li class="nav-item"><a href="#schedule-section" class="nav-link"><span>Calendário</span></a></li>
+					<li class="nav-item"><a href="#blog-section" class="nav-link"><span>Novidades</span></a></li>
+					<li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contactos</span></a></li>
+					<li class="nav-item cta"><a href="#" data-toggle="modal" data-target="#inscricaoModal" class="nav-link">Inscrever-se</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<?php
+	include_once 'app/views/public/banner.phtml';
+	?>
+
+	<section class="ftco-about ftco-counter ftco-no-pb img ftco-section" id="about-section">
+		<div class="container">
+			<div class="row d-flex">
+				<div class="col-md-6 col-lg-5 d-flex">
+					<div class="img-about img d-flex align-items-stretch">
+						<div class="overlay"></div>
+						<div class="img d-flex align-self-stretch align-items-center" style="background-image:url(/intercolegial/web-files/images/about.png);">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-7 pl-lg-5 pt-5">
+					<div class="row justify-content-start pb-3">
+						<div class="col-md-12 heading-section ftco-animate">
+							<span class="subheading">Bem-vindo</span>
+							<h2 class="mb-4" style="font-size: 34px; text-transform: capitalize;">TORNEIO INTERCOLEGIAL TINA TUNE</h2>
+							<p style="color:#000000; text-align:justify;">O Torneio Intercolegial Tina Tune é um conjunto de festivais de carácter social com a finalidade de colaborar com a formação pedagógica, filosófica e artística dos estudantes, por meio das várias formas de manifestação da arte.</p>
+							<p style="color:#000000; text-align:justify;">Desde 2015 o torneio intercolegial tem alcançado bastante notoriedade em volta dos estudantes angolanos, sendo considerado hoje em dia como a maior manifestação cultural nos colégios da cidade capital de Angola.</p>
+						</div>
+					</div>
+					<div class="counter-wrap ftco-animate d-flex mt-md-3">
+						<div class="text p-4 pr-5 bg-primary">
+							<p class="mb-0">
+								<!--<span class="number" data-number="5">0</span>-->
+								<span style="text-align: center;"><img src="/intercolegial/web-files/images/a.png" style="width:40%;"></span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="ftco-section ftco-no-pb ftco-no-pt">
+		<div class="container-fluid px-0">
+			<div class="row no-gutters">
+				<div class="col-md-6 col-lg-3 ftco-animate">
+					<div class="gallery img" style="background-image: url(/intercolegial/web-files/images/gallery-1.png);">
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 ftco-animate">
+					<div class="gallery img" style="background-image: url(/intercolegial/web-files/images/gallery-2.png);">
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 ftco-animate">
+					<div class="gallery img" style="background-image: url(/intercolegial/web-files/images/gallery-3.png);">
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 ftco-animate">
+					<div class="gallery img" style="background-image: url(/intercolegial/web-files/images/gallery-4.png);">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<?php
+	include_once 'app/views/public/modalidades.phtml';
+	?>
+
+	<section class="ftco-section ftco-subscribe img" style="background-image: url(/intercolegial/web-files/images/bg_1.png);">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row justify-content-center pb-5">
+				<div class="col-md-7 heading-section heading-section-white text-center ftco-animate">
+					<img src="/intercolegial/web-files/images/a.png" style="width: 60%;">
+					<!--<h2 class="mb-4">Newsletters</h2>
+					<p></p>
+					<div class="row d-flex justify-content-center mt-4">
+						<div class="col-md-10">
+							<form action="#" class="subscribe-form">
+								<div class="form-group d-flex">
+									<input type="text" class="form-control" placeholder="Seu email">
+									<input type="submit" value="Subscrever" class="submit px-3">
+								</div>
+							</form>
+						</div>
+					</div>
+					-->
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<?php
+	//include_once 'app/views/public/calendario.phtml';
+	?>
+	<?php
+	include_once 'app/views/public/parceiros.phtml';
+	?>
+	<?php
+	include_once 'app/views/public/blog.phtml';
+	?>
+
+	<section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+		<div class="container">
+			<div class="row justify-content-center mb-5 pb-3">
+				<div class="col-md-7 heading-section text-center ftco-animate">
+					<span class="subheading"></span>
+					<h2 class="mb-4">Contactos</h2>
+					<p></p>
+				</div>
+			</div>
+
+			<div class="row block-9">
+				<div class="col-md-7 order-md-last d-flex">
+					<form action="#" class="bg-light p-4 p-md-5 contact-form" id="mail-express" autocomplete="off">
+						<div class="form-group">
+							<input type="text" name="nome" id="nome"  class="form-control" placeholder="Nome">
+						</div>
+						<div class="form-group">
+							<input type="text" name="email" id="email"  class="form-control" placeholder="Email">
+						</div>
+						<div class="form-group">
+							<input type="text" name="assunto" id="assunto" class="form-control" placeholder="Assunto">
+						</div>
+						<div class="form-group">
+							<textarea name="mensagem" id="mensagem" cols="30" rows="7" class="form-control" placeholder="Mensagem"></textarea>
+						</div>
+						<div id="processando" style="text-align:center; display:none;">
+							<img src="/intercolegial/web-files/images/loader.gif" alt="">
+						</div><br>
+						<div class="alert alert-success alert-dismissable" role="alert" id="divSucesso" style="display: none;">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							A sua mensagem foi enviada. Obrigado.
+						</div>
+						<div class="alert alert-warning alert-dismissable" role="alert" id="divEmailExistente" style="display: none;">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							The email already exists.
+						</div>
+
+						<div class="alert alert-warning alert-dismissable" role="alert" id="divError" style="display: none;">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							Lamentamos! Não conseguimos enviar a sua mensagem.
+						</div>
+
+						<div class="alert alert-warning alert-dismissable" role="alert" id="divVazio" style="display: none;">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							Por favor, preencher o formulário.
+						</div>
+						<div class="form-group">
+							<input type="button" id="submit-email" value="Enviar mensagem" class="btn btn-primary py-3 px-5">
+						</div>
+					</form>
+
+				</div>
+
+				<div class="col-md-5 d-flex">
+					<div class="row d-flex contact-info mb-5">
+						<div class="col-md-12 ftco-animate">
+							<div class="box p-2 px-3 bg-light d-flex">
+								<div class="icon mr-3">
+									<span class="icon-map-signs"></span>
+								</div>
+								<div>
+									<h3 class="mb-3">Endereço</h3>
+									<p style="color:#000000;">Estrada do Patriota, Edif. Kissange, 1º Andar A<br>Luanda, Angola</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12 ftco-animate">
+							<div class="box p-2 px-3 bg-light d-flex">
+								<div class="icon mr-3">
+									<span class="icon-phone2"></span>
+								</div>
+								<div>
+									<h3 class="mb-3">Telefone</h3>
+									<p style="color:#000000;"><a href="tel:+244931199396">+244 931 199 396</a></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12 ftco-animate">
+							<div class="box p-2 px-3 bg-light d-flex">
+								<div class="icon mr-3">
+									<span class="icon-paper-plane"></span>
+								</div>
+								<div>
+									<h3 class="mb-3">Email</h3>
+									<p><a href="mailto:intercolecialtinatune@jam.co.ao">intercolecialtinatune@jam.co.ao</a></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12 ftco-animate">
+							<div class="box p-2 px-3 bg-light d-flex">
+								<div class="icon mr-3">
+									<span class="icon-globe"></span>
+								</div>
+								<div>
+									<h3 class="mb-3">Website</h3>
+									<p><a href="#">intercolegialtinatune.co.ao</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="ftco-section ftco-no-pt ftco-no-pb">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941.2841286724874!2d13.177060914370006!3d-8.945944594408491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a51f56f041bedfd%3A0x99b49571352f1802!2sJAM%20Entertainment!5e0!3m2!1spt-PT!2sao!4v1602166557104!5m2!1spt-PT!2sao" style="width:100%;" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+		<!--<div id="map" class="bg-white"></div>-->
+	</section>
+
+	<?php
+	include_once 'app/views/public/footer.phtml';
+	?>
+
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+
+	<?php
+	include_once 'app/views/public/modal/inscricao.phtml';
+	include_once 'app/views/public/javascript.phtml';
+	include_once 'app/views/public/adm/selectorJS.phtml';
+	?>
+
+</body>
+
+</html>

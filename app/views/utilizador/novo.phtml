@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title><?= $v_title_page;?></title>
+
+  <?php
+    include_once 'app/views/public/adm/head.phtml';
+  ?>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <?php
+      include_once 'app/views/public/adm/topNavigation.phtml';
+    ?>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar elevation-4 sidebar-light-warning">
+      <!-- Brand Logo -->
+      <?php
+        include_once 'app/views/public/adm/logo.phtml';
+      ?>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <?php
+        include_once 'app/views/public/adm/userInfo.phtml';
+        ?>
+        <!-- Sidebar Menu -->
+        <?php
+        include_once 'app/views/public/menuLateral.phtml';
+        ?>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0 text-dark"><?= $v_page_context;?></h1>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Main row -->
+          <div class="row">
+            <!-- / Corpo da página INÍCIO -->
+            <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title"></h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" id="formUtilizador" method="POST" action="<?= $v_page_url;?>registar">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="nome-<?= $v_page_context;?>">Nome</label>
+                    <input type="text" name="nome" class="form-control" id="nome-<?= $v_page_context;?>" placeholder="Nome do <?= $v_page_context;?>">
+                  </div>
+                  <div class="form-group">
+                    <label for="email-<?= $v_page_context;?>">E-mail</label>
+                    <input type="email" name="email" class="form-control" id="email-<?= $v_page_context;?>" placeholder="Email do <?= $v_page_context;?>">
+                  </div>
+                  <div class="form-group">
+                    <label for="passe-<?= $v_page_context;?>">Palavra-passe</label>
+                    <input type="password" name="passe" class="form-control" id="passe-<?= $v_page_context;?>" placeholder="Palavra-passe para <?= $v_page_context;?>">
+                  </div>
+                  <div class="form-group">
+                    <label for="perfil-<?= $v_page_context;?>">Perfil</label>
+                    <select id="perfil-<?= $v_page_context;?>" name="perfil" class="form-control">
+                      <option value="" selected="">---</option>
+                        <?php
+                          $v_perfis = (isset($v_perfis) ? ($v_perfis) : (array()));
+                          foreach ($v_perfis as $perfil) {
+                            echo '<option value="' . $perfil->getId() . '">' . ucfirst(Method::lowerGeneral($perfil->getNome())) . '</option> ';
+                          }
+                        ?>
+                      </select>
+                  </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <a style="cursor:pointer" onclick="voltar();" class="btn btn-default btn-circle" title="Voltar"><i class="fa fa-chevron-left"></i><strong> Voltar</strong></a>
+                    <button type="submit" class="btn btn-primary">Gravar <?= $v_page_context;?></button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+            </div>
+            
+            <!-- / Corpo da página FIM -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!--/. container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <?php
+    include_once 'app/views/public/adm/foot.phtml';
+    ?>
+    
+  </div>
+  <!-- ./wrapper -->
+
+  <?php
+    include_once 'app/views/public/adm/javascript.phtml';
+    include_once 'app/views/public/adm/datatables.phtml';
+  ?>
+  <script type="text/javascript">
+$(document).ready(function () {
+  $.validator.setDefaults({
+  });
+  $('#formUtilizador').validate({
+    rules: {
+      nome: {
+        required: true
+      },
+      email: {
+        required: true
+      },
+      passe: {
+        required: true,
+        minlength: 8
+      },
+       perfil: {
+        required: true
+      },
+    },
+    messages: {
+      nome: {
+        required: "Por favor, insira o nome da <b><?= $v_page_context;?></b>"
+      },
+      email: {
+        required: "Por favor, insira um e-mail para o <b><?= $v_page_context;?></b>"
+      },
+      passe: {
+        required: "Crie uma palavra-passe para <b><?= $v_page_context;?></b>",
+        minlength: "A palavra-passe deve ter no mínimo 8 caracteres."
+      },
+      perfil: {
+        required: "Por favor, escolha o Perfil para o Utilizador"
+      },
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+    }
+  });
+});
+</script>
+</body>
+</html>

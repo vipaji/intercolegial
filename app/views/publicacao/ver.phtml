@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<?php
+        echo' <title>' . $v_title_page . '</title>';
+        include_once 'app/views/public/adm_cabecalho.phtml';
+        ?>
+		<body>
+			<div id="wrapper">
+				<!----->
+				<nav class="navbar-default navbar-static-top" role="navigation">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<h1>
+							<a class="navbar-brand" href="#">EDITOR <span class="fa fa-edit"></span></a>
+						</h1>
+                    </div>
+                    <?php include_once 'app/views/public/pesquisar.phtml'; ?>
+					
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<!-- Menu TOPO -->
+					<?php include_once 'app/views/public/menu_topo.phtml'; ?>
+					<!-- /.Menu TOPO -->
+					<div class="clearfix"></div>
+					<div class="navbar-default sidebar" role="navigation">
+                        <!-- Menu PRINCIPAL -->
+                        <?php include_once 'app/views/public/menu/menu.phtml'; ?>
+                        <!-- / Menu PRINCIPAL -->
+					</div>
+				</nav>
+							<div id="page-wrapper" class="gray-bg dashbard-1">
+								<div class="content-main">
+									<!--banner-->
+									<div class="banner">
+										<h2>
+                                            <a href="<?= $v_page_url ?>" class="btn btn-info btn-circle" title="Voltar"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
+										</h2>
+									</div>
+									<!--//banner-->
+									<!--faq-->
+									<div class="blank">
+										<div class="blank-page">
+
+
+                                            <form id="demo-form" class="form-horizontal form-label-left" data-parsley-validate="" novalidate="">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="foto_utilizador">Foto</label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <?php
+                                                        if (isset($v_entity)) {
+                                                            $foto = $v_entity->getImagem();
+                                                            if (!$v_entity->getImagem() == null) {
+                                                                echo '<img class="img-responsive avatar-view" src="' . Geral::DIR_IMG_PUBLICACOES . $foto . '" alt="Foto de ' . $v_entity->getTitulo() . '" width="120" height="120" title="Foto de ' . $v_entity->getTitulo() . '" />';
+                                                            } else {
+                                                                echo '<img class="img-responsive avatar-view" src="' . Geral::DIR_IMG_PRINCIPAL . 'logo.png"  alt="Foto de ' . $v_entity->getTitulo() . '" width="120" height="120"  title="Foto de ' . $v_entity->getTitulo() . '"  />';
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </div>
+                                                </div>
+            
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="titulo">Título: <span style="color: red;"> *</span> 
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input type="text" name ="titulo" id="titulo" required="required" disabled class="form-control col-md-7 col-xs-12" value="<?= ucfirst($v_entity->getTitulo()); ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="destaque">Destaque: <span style="color: red;"> *</span> 
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <textarea name ="destaque" id="destaque" required="required" disabled class="form-control col-md-7 col-xs-12" rows="4"><?= $v_entity->getDestaque(); ?></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="texto">Texto: <span style="color: red;"> *</span></label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                                    <textarea name ="texto" id="texto" required="required" disabled class="form-control col-md-7 col-xs-12" rows="4"><?= $v_entity->getTexto(); ?></textarea>
+                                                    </div>
+                                                </div>
+                                                
+            
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Estado: <span style="color: red;"> *</span> 
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <select id="estado"  name ="estado" class="form-control" required="" disabled>
+                                                            <?php
+                                                            if($v_entity->getEstado()==0)
+                                                            {
+                                                                echo "<option value='0'>Não publicado</option>";
+                                                            }
+                                                            elseif($v_entity->getEstado()==1)
+                                                            {
+                                                                echo "<option value='1'>Publicado</option>";
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="ln_solid"></div>
+                                                <div class="ln_solid"></div>
+                                                <div class="form-group">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-3">
+                                                        <?php
+                                                        if (Method::lowerGeneral($v_userInfo->getFuncao()->getNome()) == Geral::CONS_PERFIL_ADMINISTRADOR) {
+                                                            ?>
+                                                            <a href="<?= $v_page_url ?>editar/<?php echo base64_encode("id") . '/' . base64_encode($v_entity->getId()) ?>" class="btn btn-warning btn-circle" title="Editar"><i class="fa fa-edit"></i> Editar</a> 
+                                                            <a href="#" class="btn btn-danger btn-circle" title="Eliminar" data-toggle="modal" data-target="#eliminarUtilizador"><i class="fa fa-remove"></i> Eliminar</a>
+                                                            <?php
+                                                        }
+                                                        ?>
+            
+                                                    </div>
+                                                </div>
+                                            </form>
+
+
+										</div>
+									</div>
+									<!--//faq-->
+                                    <!---->
+                                    
+                                    <!-- footer -->
+                                    <?php include_once 'app/views/public/adm_footer.phtml'; ?>
+                                    <!-- /footer -->
+								</div>
+							</div>
+            <div class="clearfix"></div>
+            </div>
+            <!---->
+			<!--scrolling js-->
+			<?php include_once 'app/views/public/adm_javascript.phtml'; ?>
+            <script src="/autenticador/web-files/adm/js/validacao/parsley.js"></script>
+            <script src="/autenticador/web-files/adm/js/validacao/pt-pt.js"></script>
+            <!--//scrolling js-->
+        </body>
+</html>
+

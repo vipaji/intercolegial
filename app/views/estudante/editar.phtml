@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title><?= $v_title_page; ?></title>
+
+    <?php
+    include_once 'app/views/public/adm/head.phtml';
+    ?>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <?php
+        include_once 'app/views/public/adm/topNavigation.phtml';
+        ?>
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar elevation-4 sidebar-light-warning">
+            <!-- Brand Logo -->
+            <?php
+            include_once 'app/views/public/adm/logo.phtml';
+            ?>
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <?php
+                include_once 'app/views/public/adm/userInfo.phtml';
+                ?>
+                <!-- Sidebar Menu -->
+                <?php
+                include_once 'app/views/public/menuLateral.phtml';
+                ?>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark"><?= $v_page_context; ?></h1>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- Main row -->
+                    <div class="row">
+                        <!-- / Corpo da página INÍCIO -->
+
+                        <div class="col-6">
+                            <div class="card">
+
+                                <form role="form" id="formProduto" method="POST" action="<?= $v_page_url; ?>actualizar">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="nome-estudante">Nome</label>
+                                            <input type="text" name="nome" class="form-control" id="nome-estudante" placeholder="Nome da <?= $v_page_context; ?>" value="<?= $v_entity->getNome(); ?>">
+                                            <input type="hidden" name="id_estudante" class="form-control" value="<?= $v_entity->getId(); ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email-estudante">Email</label>
+                                            <input type="email" name="email" class="form-control" id="email-estudante" placeholder="Email da <?= $v_page_context; ?>" value="<?= $v_entity->getEmail(); ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telefone-estudante">Telefone</label>
+                                            <input type="text" name="telefone" class="form-control" id="telefone-estudante" placeholder="Telefone da <?= $v_page_context; ?>" value="<?= $v_entity->getTelefone(); ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="passe-estudante">Palavra-passe</label>
+                                            <input type="password" name="passe" class="form-control" id="passe-estudante" placeholder="Palavra-passe da <?= $v_page_context; ?>" value="<?= $v_entity->getPassword(); ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="escola-<?= $v_page_context; ?>">Escola</label>
+                                            <select id="escola-<?= $v_page_context; ?>" name="escola" class="form-control" required="">
+                                                <?php
+                                                $v_escolas = (isset($v_escolas) ? ($v_escolas) : (array()));
+                                                foreach ($v_escolas as $escola) {
+                                                    echo '<option value="' . $escola->getId() . '" ' . ($escola->getId() == $v_entity->getEscola()->getId() ? 'selected' : '') . '>' . $escola->getNome() . '</option> ';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="perfil-<?= $v_page_context; ?>">Perfil</label>
+                                            <select id="perfil-<?= $v_page_context; ?>" name="perfil" class="form-control" required="">
+                                                <?php
+                                                $v_perfis = (isset($v_perfis) ? ($v_perfis) : (array()));
+                                                foreach ($v_perfis as $perfil) {
+                                                    echo '<option value="' . $perfil->getId() . '" ' . ($perfil->getId() == $v_entity->getPerfil()->getId() ? 'selected' : '') . '>' . $perfil->getNome() . '</option> ';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <hr>
+                                        <div class="form-group">
+                                            <label for="estado-<?= $v_page_context; ?>">Perfil</label>
+                                            <select id="estado-<?= $v_page_context; ?>" name="estado" class="form-control" required>
+                                                <?php
+                                                if ($v_entity->getEstado() == Geral::CONS_UTILIZADOR_DESACTIVADO) {
+                                                    echo "<option value='" . Geral::CONS_UTILIZADOR_DESACTIVADO . "' seleted>Desactivado</option>";
+                                                    echo "<option value='" . Geral::CONS_UTILIZADOR_ACTIVADO . "'>Activado</option>";
+                                                } else if ($v_entity->getEstado() == Geral::CONS_UTILIZADOR_ACTIVADO) {
+                                                    echo "<option value='" . Geral::CONS_UTILIZADOR_DESACTIVADO . "'>Desactivado</option>";
+                                                    echo "<option value='" . Geral::CONS_UTILIZADOR_ACTIVADO . "' seleted>Activado</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <!--<div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Gravar <?= $v_page_context; ?></button>
+                </div>-->
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                            <a style="cursor:pointer" onclick="voltar();" class="btn btn-default btn-circle" title="Voltar"><i class="fa fa-chevron-left"></i><strong> Voltar</strong></a>
+                                            <button type="submit" class="btn btn-primary">Actualizar <?= $v_page_context; ?></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <!-- Documentos -->
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <!--<th>Operação</th>-->
+                                                <th>Documento</th>
+                                                <th>Data</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            if (isset($v_documentos)) {
+                                                if (empty($v_documentos)) {
+                                            ?>
+                                                    <div class="alert alert-danger">
+                                                        <strong><span class="fa fa-info"></span></strong> Até o momento não tens documentos carregados
+                                                    </div>
+                                                <?php
+                                                }
+                                                $cont = 0;
+                                                foreach ($v_documentos as $documento) {
+                                                ?>
+                                                    <tr>
+                                                        <td><?php echo (++$cont); ?></td>
+                                                        <td><a href="/intercolegial/web-files/uploads/documentos/<?php echo $documento->getFicheiro(); ?>" target="_new"><?php echo $documento->getDescricao(); ?></a></td>
+                                                        <td><?= $documento->getData(); ?></td>
+                                                    </tr>
+                                            <?php }
+                                            } ?>
+                                        </tbody>
+                                    </table>
+                                    <!-- // Documentos -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- / Corpo da página FIM -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!--/. container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+        <?php
+        //Inclusão da Modal de upload de ficheiros multimédia na ficha do imóvel 
+        include_once 'modal/modal-uploadMultimedia.php';
+        // Fim da Modal de upload de ficheiros multimédia na ficha do imóvel 
+        ?>
+        <!-- Main Footer -->
+        <?php
+        include_once 'app/views/public/adm/foot.phtml';
+        ?>
+
+    </div>
+    <!-- ./wrapper -->
+
+    <?php
+    include_once 'app/views/public/adm/javascript.phtml';
+    include_once 'app/views/public/adm/datatables.phtml';
+    ?>
+</body>
+
+</html>

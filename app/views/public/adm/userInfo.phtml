@@ -1,0 +1,23 @@
+<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+    <div class="image">
+        <?php
+        if (isset($v_userInfo)) {
+            if (!$v_userInfo->getFoto() == null) {
+                $foto = $v_userInfo->getFoto(); 
+                echo '<img src="' . Geral::DIR_IMG_UTILIZADORES . $foto . '"  class="img-circle elevation"/>';
+            } else {
+                echo '<img src="/intercolegial/web-files/default/m.jpg" class="img-circle elevation-2" />';
+            }
+        }
+        ?>
+    </div>
+    <div class="info">
+        <?php
+            if (isset($v_userInfo))
+            {
+                echo "<a href='/intercolegial/Utilizador/perfil/".base64_encode("id") . "/" . base64_encode($v_userInfo->getId())."' class='d-block'>".$v_userInfo->getNome()."<br>";
+                echo "<span style='font-size:10px;'>".ucfirst($v_userInfo->getPerfil()->getNome())."</span></a>";
+            }
+        ?>
+    </div>
+</div>

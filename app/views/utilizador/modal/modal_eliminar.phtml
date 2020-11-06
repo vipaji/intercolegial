@@ -1,0 +1,53 @@
+
+<!-- Modal -->
+<div class="modal fade" id="eliminarUtilizador" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"s style="color:red;" id="exampleModalLongTitle"><i class="fas fa-user-minus"></i> Eliminar utilizador</h4>
+
+            </div>
+            <div class="modal-body">
+
+                <div class="alert alert-danger" id="alerta" style="display:none;">
+                    <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                    <span id="alerta-info"></span>
+                </div>
+
+                <form id="demo-form" autocomplete="off" class="form-horizontal form-label-left" data-parsley-validate="" novalidate="" method="POST" action="<?= $v_page_url ?>eliminar" enctype="multipart/form-data">
+
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">Nome: <span style="color: red;"> *</span> 
+                        </label>
+                        <div class="col-md-8 col-sm-6 col-xs-12">
+                            <input type="text" name ="nome" id="nome" readonly="" required="" value="<?= ucfirst($v_entity->getNome()); ?>" class="form-control col-md-7 col-xs-12">
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="custId" name="cod_utilizador" value="<?= $v_entity->getId(); ?>">
+
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <button type="submit" class="btn btn-danger"><i class="fa fa-check"></i> Confirmar</button>
+                            <button class="btn btn-default" data-dismiss="modal"><i class="fa fa-undo"></i> Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- // Modal -->
+
+
+

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title><?= $v_title_page;?></title>
+
+  <?php
+    include_once 'app/views/public/adm/head.phtml';
+  ?>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <?php
+      include_once 'app/views/public/adm/topNavigation.phtml';
+    ?>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar elevation-4 sidebar-light-warning">
+      <!-- Brand Logo -->
+      <?php
+        include_once 'app/views/public/adm/logo.phtml';
+      ?>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <?php
+        include_once 'app/views/public/adm/userInfo.phtml';
+        ?>
+        <!-- Sidebar Menu -->
+        <?php
+        include_once 'app/views/public/menuLateral.phtml';
+        ?>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0 text-dark"><?= $v_page_context;?></h1>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Main row -->
+          <div class="row">
+            <!-- / Corpo da página INÍCIO -->
+
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                    <button type="button" class="btn btn-primary" onclick="location='/intercolegial/Marca/nova';">Nova <?= $v_page_context;?></button>
+                    </div>
+
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nome</th>
+                                    <th>Descrição</th>
+                                    <th>Opções</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                if (isset($v_entities)) {
+                                    if (empty($v_entities)) {
+                                        ?>
+                                    <div class="alert alert-danger">
+                                        <strong><span class="fa fa-info"></span></strong> Até o momento não temos <?= $v_page_context;?> adicionada.
+                                    </div>
+                                    <?php
+                                }
+                                $cont = 0;
+                                foreach ($v_entities as $v_entity) {
+                                    ?>
+                                <tr>
+                                    <td><?php echo (++$cont);?></td>
+                                    <td><?= ucfirst(Method::upperGeneral($v_entity->getNome())); ?></td>
+                                    <td><?= $v_entity->getDescricao(); ?></td>
+                                    <td>
+                                      <a href="<?= $v_page_url ?>ver/<?php echo base64_encode("id") . '/' . base64_encode($v_entity->getId()) ?>" class="btn btn-default btn-circle" title="Ver"><i class="fa fa-eye fa-1x"></i></a>
+                                      <a  href="<?= $v_page_url ?>editar/<?php echo base64_encode("id") . '/' . base64_encode($v_entity->getId()) ?>" class="btn btn-warning btn-circle" title="Editar"><i class="fa fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                                <?php }
+                                } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- / Corpo da página FIM -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!--/. container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <?php
+    include_once 'app/views/public/adm/foot.phtml';
+    ?>
+    
+  </div>
+  <!-- ./wrapper -->
+
+  <?php
+    include_once 'app/views/public/adm/javascript.phtml';
+    include_once 'app/views/public/adm/datatables.phtml';
+  ?>
+</body>
+</html>

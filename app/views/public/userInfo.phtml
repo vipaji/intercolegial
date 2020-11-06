@@ -1,0 +1,31 @@
+<div class="profile clearfix">
+    <div class="profile_pic">
+        <?php
+        if (isset($v_userInfo)) {
+            if (!$v_userInfo->getFoto() == null) {
+                $foto = $v_userInfo->getFoto(); 
+                echo '<img src="' . Geral::DIR_IMG_UTILIZADORES . $foto . '"  class="img-circle profile_img" width="60" height="60" alt=""/>';
+            } else {
+                echo '<img src="/intercolegial/web-files/uploads/utilizadores/m.jpg"  class="img-circle profile_img" width="60" height="60" alt="" />';
+            }
+        }
+        ?>  </div>
+    <div class="profile_info" style="color:#020D97;">
+         <?php
+            if (isset($v_userInfo))
+            {
+                echo ucfirst($v_userInfo->getFuncao()->getNome())."<br>";
+            }
+            ?>
+        <span style="color:#333;">Bem-vindo,</span>
+        <h2 style="color:#020D97;"><strong>
+            <?php
+            if (isset($v_userInfo))
+            {
+                echo $v_userInfo->getNome();
+            }
+            ?>
+</strong>
+        </h2>
+    </div>
+</div>

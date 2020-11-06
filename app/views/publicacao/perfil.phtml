@@ -1,0 +1,138 @@
+<?php
+include_once 'app/views/public/begin.phtml';
+echo ' <title>' . $v_title_page . '</title>';
+include_once 'app/views/public/head.phtml';
+include_once 'app/views/public/header.phtml';
+?>
+
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <!-- logo quick info -->
+                    <?php
+                    include_once 'app/views/public/logo.phtml';
+                    ?>
+                    <!-- /logo quick info -->
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <?php
+                include_once 'app/views/public/userInfo.phtml';
+                ?>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <?php
+                include_once 'app/views/public/menuLateral.phtml';
+                ?>
+                <!-- /sidebar menu -->
+
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <?php
+        include_once 'app/views/public/topNavigation.phtml';
+        ?>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3><i class="fa fa-user"></i>&nbsp;Utilizador  <small> perfil</small></h3>
+                    </div>
+
+                    <div class="title_right">
+                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                            <div class="input-group">
+                              <!-- <input type="text" class="form-control" placeholder="Procurar por..."> -->
+                                <span class="input-group-btn">
+                                    <!-- <button class="btn btn-default" type="button">Encontrar</button> -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h4 ><i class="fa fa-info-circle"></i> Informação  <span style="padding-left: 1%; font-size: 12px; color: black; "> 
+                                </h4>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="x_content">
+
+                                <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                                    <div class="profile_img">
+                                        <div id="crop-avatar">
+                                            <!-- Current avatar -->
+                                            <?php
+                                            if (isset($v_entity)) {
+                                                $foto = $v_entity->getFoto();
+                                                if (!$v_entity->getFoto() == null) {
+                                                    echo '<img class="img-responsive avatar-view" src="' . Geral::DIR_IMG_UTIZADORES . $foto . '" alt="Foto de ' . $v_entity->getNome() . '" title="Foto de ' . $v_entity->getNome() . '" />';
+                                                } else {
+                                                    echo '<img class="img-responsive avatar-view" src="' . Geral::DIR_IMG_UTIZADORES . 'm.jpg"  alt="Foto de ' . $v_entity->getNome() . '"  title="Foto de ' . $v_entity->getNome() . '"  />';
+                                                }
+                                            }
+                                            ?>
+                                        </div>
+                                        <div style="padding-top:10px;">
+                                            <a data-toggle="modal" class="btn btn-circle btn-default btn-xs" data-target="#alterarfoto" style="cursor:pointer;"><i class="fa fa-photo m-right-xs"></i> Adicionar foto</a>                          
+                                            <a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#alterarpassword"><i class="fa fa-lock m-right-xs"></i> Alterar Palavra-passe</a>
+                                        </div>
+                                    </div>
+                                    <div class="ln_solid"></div>
+                                    <h3><?= $v_entity->getNome(); ?></h3>
+
+                                    <ul class="list-unstyled user_data">
+                                        <li>
+                                            <i class="fa fa-envelope-o user-profile-icon"></i>
+                                            <?= $v_entity->getEmail(); ?> 
+                                        </li>
+                                        <li><i class="fa fa-briefcase user-profile-icon"></i>
+                                            <?= ucfirst(Method::lowerGeneral($v_entity->getFuncao()->getNome())); ?>                        
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- Modal-password-->
+        <?php
+        include_once 'app/views/utilizador/modal/modal-password.phtml';
+        ?>
+        <!-- // Modal-password -->
+
+        <!-- Modal - Adicionar Foto -->
+        <?php
+        include_once 'app/views/utilizador/modal/modal-add-foto.phtml';
+        ?>
+        <!-- // Modal - Adicionar Foto -->
+
+        <?php
+        include_once 'app/views/public/footer.phtml';
+        include_once 'app/views/public/javascript.phtml';
+        include_once 'app/views/public/end.phtml';
+        ?>
+
+
