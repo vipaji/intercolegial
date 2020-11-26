@@ -3,8 +3,8 @@ session_cache_expire(10); // Duração da Sessão 10 minutos
 session_start();
 header("Content-type: text/html; charset=utf-8");
 define('DEVELOPMENT_ENVIRONMENT', true);
-//define('APP_NAME', 'intercolegial');
-define('APP_NAME', '/intercolegialtinatune.co.ao');
+define('APP_NAME', 'intercolegial');
+//define('APP_NAME', '/intercolegialtinatune.co.ao');
 define('COPYRIGHT', '© 2020 Todos direitos reservados.');
 define('DEVELOPERS', 'Júlio Manuel #UNSTOPPABLEMIND');
 define('DS', DIRECTORY_SEPARATOR);
