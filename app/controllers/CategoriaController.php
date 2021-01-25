@@ -9,10 +9,10 @@ Class CategoriaController extends Controller {
         $this->session = new SessionHelper();
         $this->dados['userInfo'] = $this->session->selectSession('userData');
 
-        $this->dados['title_page'] = "Categoria &bull; Oliva de Angola &#8482;";
+        $this->dados['title_page'] = "Categoria &bull; Intercolegial Tina Tune &#8482;";
         $this->dados['page_context'] = "Categoria";
         $this->dados['page_icon'] = "fa fa-start";
-        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Categoria/';
+        $this->dados['page_url'] = '/Categoria/';
     }
 
     public function indexAction() {

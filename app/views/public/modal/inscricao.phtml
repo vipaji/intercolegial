@@ -11,27 +11,32 @@
             <!--<form role="form" id="formProduto" method="POST" action="<?= $v_page_url; ?>registar">-->
             <form class="form-horizontal" id="mail-express" autocomplete="off">
                 <div class="modal-body">
-                    <div id="processando" style="text-align:center; display:none;">
+                    <div id="processandoInsc" style="text-align:center; display:none;">
                         <img src="https://www.intercolegialtinatune.co.ao/web-files/images/loader.gif" alt="">
                     </div><br>
-                    <div class="alert alert-success alert-dismissable" role="alert" id="divSucesso" style="display: none;">
+                    <div class="alert alert-success alert-dismissable" role="alert" id="divSucessoInsc" style="display: none;">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         A inscrição foi feita com sucesso. Verifique a sua caixa de email para activação da conta.
                     </div>
-                    <div class="alert alert-warning alert-dismissable" role="alert" id="divEmailExistente" style="display: none;">
+                    <div class="alert alert-warning alert-dismissable" role="alert" id="divEmailExistenteInsc" style="display: none;">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         O email já existe.
                     </div>
 
-                    <div class="alert alert-warning alert-dismissable" role="alert" id="divError" style="display: none;">
+                    <div class="alert alert-warning alert-dismissable" role="alert" id="divErrorInsc" style="display: none;">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         A sua inscrição foi com sucesso, mas não foi possível enviar o link para activação da conta.<br>
                         <b>Por favor contacte-nos.</b>
                     </div>
 
-                    <div class="alert alert-warning alert-dismissable" role="alert" id="divVazio" style="display: none;">
+                    <div class="alert alert-warning alert-dismissable" role="alert" id="divVazioInsc" style="display: none;">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         Por favor, preencha o formulário
+                    </div>
+
+                    <div class="alert alert-warning alert-dismissable" role="alert" id="divEscolaVazia" style="display: none;">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        Por favor, escolhe a sua escola
                     </div>
 
                     <div class="alert alert-danger" id="label-erro" style="display:none;">
@@ -85,7 +90,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button id="submit-email" type="button" class="btn btn-primary">Inscrever-se</button>
+                    <button id="submit-inscricao" type="button" class="btn btn-primary">Inscrever-se</button>
                 </div>
             </form>
         </div>

@@ -6,7 +6,7 @@
                 $foto = $v_userInfo->getFoto(); 
                 echo '<img src="' . Geral::DIR_IMG_UTILIZADORES . $foto . '"  class="img-circle elevation"/>';
             } else {
-                echo '<img src="https://www.intercolegialtinatune.co.ao/web-files/default/m.jpg" class="img-circle elevation-2" />';
+                echo '<img src="/web-files/default/m.jpg" class="img-circle elevation-2" />';
             }
         }
         ?>
@@ -15,7 +15,7 @@
         <?php
             if (isset($v_userInfo))
             {
-                echo "<a href='https://www.intercolegialtinatune.co.ao/Utilizador/perfil/".base64_encode("id") . "/" . base64_encode($v_userInfo->getId())."' class='d-block'>".$v_userInfo->getNome()."<br>";
+                echo "<a href='/Utilizador/perfil/".base64_encode("id") . "/" . base64_encode($v_userInfo->getId())."' class='d-block'>".$v_userInfo->getNome()."<br>";
                 echo "<span style='font-size:10px;'>".ucfirst($v_userInfo->getPerfil()->getNome())."</span></a>";
             }
         ?>

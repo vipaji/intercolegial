@@ -12,8 +12,8 @@ Class BlogController extends Controller {
         $this->dados['title_page'] = "Blogs &bull; Intercolegial Tina Tune &#8482;";
         $this->dados['page_context'] = "Blog";
         $this->dados['page_icon'] = "fa fa-start";
-        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Blog/';
-        $this->dados['home_url'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
+        $this->dados['page_url'] = '/Blog/';
+        $this->dados['home_url'] = '/Dashboard/';
         $this->dados['id'] = 'blog';
     }
 
@@ -175,7 +175,7 @@ Class BlogController extends Controller {
             //$blog = new Utilizador();
 
             if (isset($_FILES)) {
-                $uploadImagem = new UploadImagem($_FILES['foto_blog'], '..https://www.intercolegialtinatune.co.ao/web-files/uploads/blog/');
+                $uploadImagem = new UploadImagem($_FILES['foto_blog'], $_SERVER['DOCUMENT_ROOT'].'/web-files/uploads/blog/');
 
                 $up = $uploadImagem->upload();
                 if ($up == TRUE) {

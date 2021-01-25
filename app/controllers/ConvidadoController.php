@@ -11,10 +11,10 @@ Class ConvidadoController extends Controller {
         $this->dados['userInfo'] = $this->session->selectSession('userData');
         */
 
-        $this->dados['title_page'] = 'Modo Convidado | Autenticador Online';
-        $this->dados['page_context'] = "Modo Convidado | Autenticador Online";
+        $this->dados['title_page'] = 'Modo Convidado &bull; Intercolegial Tina Tune &#8482;';
+        $this->dados['page_context'] = "Modo Convidado &bull; Intercolegial Tina Tune &#8482;";
         $this->dados['page_icon'] = "fa fa-dashboard";
-        $this->dados['page_url'] = '/autenticador/Login/';
+        $this->dados['page_url'] = '/Login/';
     }
 
     public function indexAction() {

@@ -66,7 +66,11 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <button type="button" class="btn btn-primary" onclick="location='<?= $v_page_url; ?>nova';">Novo <?= $v_page_context; ?></button>
+                  <?php
+                        if ((strtolower($v_userInfo->getPerfil()->getNome()) == Geral::CONS_PERFIL_ADMINISTRADOR) or (strtolower($v_userInfo->getPerfil()->getNome()) == Geral::CONS_PERFIL_GESTOR))
+                        {?>
+                        <button type="button" class="btn btn-primary" onclick="location='<?= $v_page_url; ?>nova';">Novo <?= $v_page_context; ?></button>
+                        <?php }?>
                 </div>
 
                 <div class="card-body">

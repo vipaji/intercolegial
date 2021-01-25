@@ -12,8 +12,8 @@ Class EscolaController extends Controller {
         $this->dados['title_page'] = "Escolas &bull; Intercolegial Tina Tune &#8482;";
         $this->dados['page_context'] = "Escola";
         $this->dados['page_icon'] = "fa fa-start";
-        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Escola/';
-        $this->dados['home_url'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
+        $this->dados['page_url'] = '/Escola/';
+        $this->dados['home_url'] = '/Dashboard/';
         $this->dados['id'] = 'escola';
     }
 
@@ -138,9 +138,9 @@ Class EscolaController extends Controller {
     public function eliminarAction() {
         try
         {
-            /*if (!$this->auth->HasPermission("eliminarTipoEscola")) {
+            if (!$this->auth->HasPermission("eliminarTipoEscola")) {
                 throw new \Exception("Não estás autorizado a efectuar esta operação.");
-            }*/
+            }
             $escolaDAO = new EscolaDAO();
 
             $retorno = $escolaDAO->buscarID($this->getParams('id'));

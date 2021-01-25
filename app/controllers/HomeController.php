@@ -9,7 +9,7 @@ class HomeController extends Controller
         $this->dados['title_page'] = 'Intercolegial Tina Tune';
         $this->dados['page_context'] = "Intercolegial Tina Tune";
         $this->dados['page_icon'] = "fa fa-home";
-        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Home/';
+        $this->dados['page_url'] = '/Home/';
     }
 
     public function indexAction()
@@ -113,15 +113,15 @@ class HomeController extends Controller
 
                     $subject = "INSCRICAO | INTERCOLEGIAL TINA TUNE";
 
-                    $logo = 'https://www.jam.co.ao/jam/web-files/assets/img/logo-dark.png';
-                    $link = 'https://www.jam.co.ao/';
+                    $logo = 'https://www.intercolegialtinatune.co.ao/web-files/images/logo_front.png';
+                    $link = 'https://www.intercolegialtinatune.co.ao/';
 
                     $body = "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Activar conta</title></head><body>";
                     $body .= "<div style='width:100%'>";
                     $body .= "<h3 style='color:#DC3E0F; text-align:center;'>ACTIVA&Ccedil;&Atilde;O DA CONTA</h3><hr>";
                     $body .= "<p style='text-align:justify; color:#000000;'><span style='font-size:18px;'><b>Parab&eacute;ns!</b></span><br>A sua inscri&ccedil;&atilde;o foi com sucesso.<br><br>";
-                    $body .= "<a href='https://www.jam.co.ao/Home/activacao/" . base64_encode("email") . '/' . base64_encode(filter_input(INPUT_POST, 'email')) . "'>Activar a conta agora</a>";
-                    $body .= "<br>Ap&oacute;s activa&ccedil;&atilde;o da conta, o site redicionar&aacute;-lo para o <a href='https://www.jam.co.ao/Login'>in&iacute;cio de sess&atilde;o.</a></p>";
+                    $body .= "<a href='https://www.intercolegialtinatune.co.ao/Home/activacao/" . base64_encode("email") . '/' . base64_encode(filter_input(INPUT_POST, 'email')) . "'>Activar a conta agora</a>";
+                    $body .= "<br>Ap&oacute;s activa&ccedil;&atilde;o da conta, o site redicionar&aacute;-lo para o <a href='https://www.intercolegialtinatune.co.ao/Login'>in&iacute;cio de sess&atilde;o.</a></p>";
                     $body .= "<p style='color:#000000;'>{$nome}</p>";
                     $body .= "<br><br><hr><a href='{$link}'><img src='{$logo}' alt='JAM Entertainment'></a>";
                     $body .= "<br><span style='font-size:12px;'>Tel: +(244) 931 199 396<br>Estrada do Lar do Patriota, Edif. Kissange, 1&ordf; Andar A<br>Luanda, Angola</span>";

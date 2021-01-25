@@ -10,11 +10,11 @@ Class PerfilController extends Controller {
         $this->session = new SessionHelper();
         $this->dados['userInfo'] = $this->session->selectSession('userData');
         
-        $this->dados['title_page'] = 'Perfil &bull; Oliva de Angola &#8482;';
+        $this->dados['title_page'] = 'Perfil &bull; Intercolegial Tina Tune &#8482;';
         $this->dados['page_context'] = "Perfil";
         $this->dados['page_icon'] = "fa fa-dashboard";
-        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Perfil/';
-        $this->dados['home_url'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
+        $this->dados['page_url'] = '/Perfil/';
+        $this->dados['home_url'] = '/Dashboard/';
     }
 
     public function indexAction() {

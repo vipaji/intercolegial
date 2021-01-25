@@ -9,12 +9,12 @@ Class UtilizadorController extends Controller {
         $this->session = new SessionHelper();
         $this->dados['userInfo'] = $this->session->selectSession('userData');
 
-        $this->dados['title_page'] = "Utilizadores &bull; Oliva de Angola &#8482;";
+        $this->dados['title_page'] = "Utilizadores &bull; Intercolegial Tina Tune &#8482;";
         $this->dados['page_context'] = "Utilizadores";
         $this->dados['page_icon'] = "fa fa-users";
-        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Utilizador/';
-        $this->dados['page_home'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
-        $this->dados['home_url'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
+        $this->dados['page_url'] = '/Utilizador/';
+        $this->dados['page_home'] = '/Dashboard/';
+        $this->dados['home_url'] = '/Dashboard/';
     }
 
     /**
@@ -118,7 +118,7 @@ Class UtilizadorController extends Controller {
             //$utilizador = new Utilizador();
 
             if (isset($_FILES)) {
-                $uploadImagem = new UploadImagem($_FILES['foto_utilizador'], '..https://www.intercolegialtinatune.co.ao/web-files/uploads/utilizadores/');
+                $uploadImagem = new UploadImagem($_FILES['foto_utilizador'], $_SERVER['DOCUMENT_ROOT'].'/web-files/uploads/utilizadores/');
 
                 $up = $uploadImagem->upload();
                 if ($up == TRUE) {
@@ -220,7 +220,7 @@ Class UtilizadorController extends Controller {
             $utilizador->setEstado(filter_input(INPUT_POST, 'estado'));
             $utilizador->setPerfil((new PerfilDAO())->buscarID(filter_input(INPUT_POST, 'perfil')));
 
-            Method::registaLog("Actualizar", "Actualizou                                                                                                                                                                                                                                                                                                                                                                                         informações do utilizador: <b>" . $retorno->getNome() ."</b>", $this->session->selectSession('userData')->getId());
+            Method::registaLog("Actualizar", "Actualizou informações do utilizador: <b>" . $retorno->getNome() ."</b>", $this->session->selectSession('userData')->getId());
 
             $utilizadorDAO->actualizar($utilizador);
             $redirector = new RedirectorHelper();
@@ -306,6 +306,9 @@ Class UtilizadorController extends Controller {
      */
     public function eliminarAction() {
         try {
+			if (!$this->auth->HasPermission("eliminarUtilizador")) {
+                throw new \Exception("Utilizador não autorizado a efectuar esta operação.");
+            }
             $utilizadorDAO = new UtilizadorDAO();
             
             $retorno = $utilizadorDAO->buscarID($this->getParams('id_utilizador'));
@@ -351,7 +354,7 @@ Class UtilizadorController extends Controller {
 
                 foreach ($files as $file) {
                     try {
-                        $upload = new Upload($file, '..https://www.intercolegialtinatune.co.ao/web-files/uploads/documentos/');
+                        $upload = new Upload($file, $_SERVER['DOCUMENT_ROOT'].'/web-files/uploads/documentos/');
                         if ($upload->upload() == TRUE) {
 
                             $documento = new Documento();

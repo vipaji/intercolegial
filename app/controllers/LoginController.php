@@ -33,7 +33,6 @@ Class LoginController extends Controller {
         }
         catch (Exception $exc)
         {
-            //$this->dados['mensagem'] = ($exc->getCode() == "23000" ? "Dado(s) duplicado(s)" : "");
             $this->dados['mensagem'] = $exc->getMessage();
             $this->view('erro/index', $this->dados);
         }
@@ -47,7 +46,6 @@ Class LoginController extends Controller {
         }
         catch (Exception $exc)
         {
-            //$this->dados['mensagem'] = ($exc->getCode() == "23000" ? "Dado(s) duplicado(s)" : "");
             $this->dados['mensagem'] = $exc->getMessage();
             $this->view('erro/index', $this->dados);
         }
@@ -56,7 +54,7 @@ Class LoginController extends Controller {
     public function recoverAction() {
         try
         {
-            $this->dados['title_page'] = 'Recuperar palavra-passe &bull; Oliva de Angola';
+            $this->dados['title_page'] = 'Recuperar palavra-passe &bull; Intercolegial Tina Tune';
             $this->view('login/recover', $this->dados);
         }
         catch (Exception $exc)

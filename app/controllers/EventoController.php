@@ -12,8 +12,8 @@ Class EventoController extends Controller {
         $this->dados['title_page'] = "Eventos &bull; Intercolegial Tina Tune &#8482;";
         $this->dados['page_context'] = "Evento";
         $this->dados['page_icon'] = "fa fa-start";
-        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Evento/';
-        $this->dados['home_url'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
+        $this->dados['page_url'] = '/Evento/';
+        $this->dados['home_url'] = '/Dashboard/';
         $this->dados['id'] = 'evento';
     }
 
@@ -132,9 +132,9 @@ Class EventoController extends Controller {
     public function eliminarAction() {
         try
         {
-            /*if (!$this->auth->HasPermission("eliminarEvento")) {
+            if (!$this->auth->HasPermission("eliminarEvento")) {
                 throw new \Exception("Não estás autorizado a efectuar esta operação.");
-            }*/
+            }
             $eventoDAO = new EventoDAO();
 
             $retorno = $eventoDAO->buscarID($this->getParams('id'));

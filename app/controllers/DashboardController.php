@@ -25,8 +25,8 @@ class DashboardController extends Controller
         $this->dados['title_page'] = "Dashboard &bull; Intercolegial Tina Tune &#8482;";
         $this->dados['page_context'] = "Dashboard";
         $this->dados['page_icon'] = "fa fa-dashboard";
-        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
-        $this->dados['home_url'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
+        $this->dados['page_url'] = '/Dashboard/';
+        $this->dados['home_url'] = '/Dashboard/';
     }
 
     public function indexAction()
@@ -44,7 +44,7 @@ class DashboardController extends Controller
                 $this->view('utilizador/perfil', $this->dados);
             } else
             {
-                $this->dados['escolas'] = (new EscolaDAO())->listarTodas();
+                $this->dados['escolas'] = (new EscolaDAO())->listarTodasUltimas();
                 $this->dados['estudantes'] = (new UtilizadorDAO())->listarEstudantes();
                 $this->dados['total_estudante'] = count((new UtilizadorDAO())->listarEstudante());
                 $this->dados['total_escola'] = count((new EscolaDAO())->listarTodas());
@@ -84,7 +84,7 @@ class DashboardController extends Controller
 
                 foreach ($files as $file) {
                     try {
-                        $upload = new Upload($file, '..https://www.intercolegialtinatune.co.ao/web-files/uploads/documentos/');
+                        $upload = new Upload($file, $_SERVER['DOCUMENT_ROOT'].'/web-files/uploads/documentos/');
                         if ($upload->upload() == TRUE) {
 
                             $documento = new Documento();

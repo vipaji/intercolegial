@@ -9,19 +9,19 @@ Class LogController extends Controller {
         $this->session = new SessionHelper();
         $this->dados['userInfo'] = $this->session->selectSession('userData');
 
-        $this->dados['title_page'] = "Actividades &bull; Oliva de Angola &#8482;";
+        $this->dados['title_page'] = "Actividades &bull; Intercolegial Tina Tune &#8482;;";
         $this->dados['page_context'] = "Actividades";
         $this->dados['page_icon'] = "fa fa-exchange";
-        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Log/';
-        $this->dados['home_url'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
+        $this->dados['page_url'] = '/Log/';
+        $this->dados['home_url'] = '/Dashboard/';
     }
 
     public function indexAction() {
         try
         {
-            /*if (!$this->auth->HasPermission("verLog")) {
+            if (!$this->auth->HasPermission("verLog")) {
                 throw new \Exception("Utilizador não autorizado a ver logs.");
-            }*/
+            }
             $logDAO = new LogDAO();
             $this->dados['entities'] = $logDAO->listarTodas();
             
@@ -43,7 +43,6 @@ Class LogController extends Controller {
         }
         catch (Exception $exc)
         {
-            //$this->dados['mensagem'] = ($exc->getCode() == "23000" ? "Dado(s) duplicado(s)" : "");
             $this->dados['mensagem'] = $exc->getMessage();
             $this->view('erro/in', $this->dados);
         }
@@ -62,7 +61,6 @@ Class LogController extends Controller {
         }
         catch (Exception $exc)
         {
-            //$this->dados['mensagem'] = ($exc->getCode() == "23000" ? "Dado(s) duplicado(s)" : "");
             $this->dados['mensagem'] = $exc->getMessage();
             $this->view('erro/in', $this->dados);
         }
@@ -79,7 +77,6 @@ Class LogController extends Controller {
         }
         catch (Exception $exc)
         {
-            //$this->dados['mensagem'] = ($exc->getCode() == "23000" ? "Dado(s) duplicado(s)" : "");
             $this->dados['mensagem'] = $exc->getMessage();
             $this->view('erro/in', $this->dados);
         }
@@ -124,7 +121,6 @@ Class LogController extends Controller {
         }
         catch (Exception $exc)
         {
-            //$this->dados['mensagem'] = ($exc->getCode() == "23000" ? "Dado(s) duplicado(s)" : "");
             $this->dados['mensagem'] = $exc->getMessage();
             $this->view('erro/in', $this->dados);
         }

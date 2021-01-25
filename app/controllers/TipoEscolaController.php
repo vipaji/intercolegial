@@ -12,7 +12,7 @@ Class TipoEscolaController extends Controller {
         $this->dados['title_page'] = "Tipo de Escola &bull; Intercolegial Tina Tune &#8482;";
         $this->dados['page_context'] = "Tipo de Escola";
         $this->dados['page_icon'] = "fa fa-start";
-        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/TipoEscola/';
+        $this->dados['page_url'] = '/TipoEscola/';
         $this->dados['id'] = 'tipoescola';
     }
 
@@ -25,7 +25,6 @@ Class TipoEscolaController extends Controller {
         }
         catch (Exception $exc)
         {
-            //$this->dados['mensagem'] = ($exc->getCode() == "23000" ? "Dado(s) duplicado(s)" : "");
             $this->dados['mensagem'] = $exc->getMessage();
             $this->view('erro/in', $this->dados);
         }
@@ -38,7 +37,6 @@ Class TipoEscolaController extends Controller {
         }
         catch (Exception $exc)
         {
-            //$this->dados['mensagem'] = ($exc->getCode() == "23000" ? "Dado(s) duplicado(s)" : "");
             $this->dados['mensagem'] = $exc->getMessage();
             $this->view('erro/in', $this->dados);
         }
@@ -60,7 +58,6 @@ Class TipoEscolaController extends Controller {
         }
         catch (Exception $exc)
         {
-            //$this->dados['mensagem'] = ($exc->getCode() == "23000" ? "Dado(s) duplicado(s)" : "");
             $this->dados['mensagem'] = $exc->getMessage();
             $this->view('erro/in', $this->dados);
         }
@@ -77,7 +74,6 @@ Class TipoEscolaController extends Controller {
         }
         catch (Exception $exc)
         {
-            //$this->dados['mensagem'] = ($exc->getCode() == "23000" ? "Dado(s) duplicado(s)" : "");
             $this->dados['mensagem'] = $exc->getMessage();
             $this->view('erro/in', $this->dados);
         }
@@ -94,7 +90,6 @@ Class TipoEscolaController extends Controller {
         }
         catch (Exception $exc)
         {
-            //$this->dados['mensagem'] = ($exc->getCode() == "23000" ? "Dado(s) duplicado(s)" : "");
             $this->dados['mensagem'] = $exc->getMessage();
             $this->view('erro/in', $this->dados);
         }
@@ -129,9 +124,9 @@ Class TipoEscolaController extends Controller {
     public function eliminarAction() {
         try
         {
-            /*if (!$this->auth->HasPermission("eliminarTipoEscola")) {
+            if (!$this->auth->HasPermission("eliminarTipoEscola")) {
                 throw new \Exception("Não estás autorizado a efectuar esta operação.");
-            }*/
+            }
             $tipoescolaDAO = new TipoEscolaDAO();
 
             $retorno = $tipoescolaDAO->buscarID($this->getParams('id'));
@@ -145,7 +140,6 @@ Class TipoEscolaController extends Controller {
         }
         catch (Exception $exc)
         {
-            //$this->dados['mensagem'] = ($exc->getCode() == "23000" ? "Dado(s) duplicado(s)" : "");
             $this->dados['mensagem'] = $exc->getMessage();
             $this->view('erro/in', $this->dados);
         }

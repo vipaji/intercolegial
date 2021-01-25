@@ -9,11 +9,11 @@ Class PermissaoController extends Controller {
         $this->session = new SessionHelper();
         $this->dados['userInfo'] = $this->session->selectSession('userData');
 
-        $this->dados['title_page'] = "Permissão &bull; Oliva de Angola &#8482;";
+        $this->dados['title_page'] = "Permissão &bull; Intercolegial Tina Tune &#8482;";
         $this->dados['page_context'] = "Permissão";
         $this->dados['page_icon'] = "fa fa-asterisk";
-        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Permissao/';
-        $this->dados['home_url'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
+        $this->dados['page_url'] = '/Permissao/';
+        $this->dados['home_url'] = '/Dashboard/';
     }
 
     public function indexAction() {
@@ -25,7 +25,6 @@ Class PermissaoController extends Controller {
         }
         catch (Exception $exc)
         {
-            //$this->dados['mensagem'] = ($exc->getCode() == "23000" ? "Dado(s) duplicado(s)" : "");
             $this->dados['mensagem'] = $exc->getMessage();
             $this->view('erro/in', $this->dados);
         }
@@ -38,7 +37,6 @@ Class PermissaoController extends Controller {
         }
         catch (Exception $exc)
         {
-            //$this->dados['mensagem'] = ($exc->getCode() == "23000" ? "Dado(s) duplicado(s)" : "");
             $this->dados['mensagem'] = $exc->getMessage();
             $this->view('erro/in', $this->dados);
         }
@@ -59,7 +57,6 @@ Class PermissaoController extends Controller {
         }
         catch (Exception $exc)
         {
-            //$this->dados['mensagem'] = ($exc->getCode() == "23000" ? "Dado(s) duplicado(s)" : "");
             $this->dados['mensagem'] = $exc->getMessage();
             $this->view('erro/in', $this->dados);
         }
@@ -76,7 +73,6 @@ Class PermissaoController extends Controller {
         }
         catch (Exception $exc)
         {
-            //$this->dados['mensagem'] = ($exc->getCode() == "23000" ? "Dado(s) duplicado(s)" : "");
             $this->dados['mensagem'] = $exc->getMessage();
             $this->view('erro/in', $this->dados);
         }
@@ -93,7 +89,6 @@ Class PermissaoController extends Controller {
         }
         catch (Exception $exc)
         {
-            //$this->dados['mensagem'] = ($exc->getCode() == "23000" ? "Dado(s) duplicado(s)" : "");
             $this->dados['mensagem'] = $exc->getMessage();
             $this->view('erro/in', $this->dados);
         }
@@ -119,7 +114,6 @@ Class PermissaoController extends Controller {
         }
         catch (Exception $exc)
         {
-            //$this->dados['mensagem'] = ($exc->getCode() == "23000" ? "Dado(s) duplicado(s)" : "");
             $this->dados['mensagem'] = $exc->getMessage();
             $this->view('erro/in', $this->dados);
         }
@@ -144,7 +138,6 @@ Class PermissaoController extends Controller {
         }
         catch (Exception $exc)
         {
-            //$this->dados['mensagem'] = ($exc->getCode() == "23000" ? "Dado(s) duplicado(s)" : "");
             $this->dados['mensagem'] = $exc->getMessage();
             $this->view('erro/in', $this->dados);
         }

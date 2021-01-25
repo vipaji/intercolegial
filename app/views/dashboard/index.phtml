@@ -176,12 +176,12 @@
                           ?>
                             <tr>
                               <td>
-                                <a href="https://www.intercolegialtinatune.co.ao/Estudante/ver/<?php echo base64_encode("id") . '/' . base64_encode($estudante->getId()) ?>">
+                                <a href="https://intercolegialtinatune.co.ao/Estudante/ver/<?php echo base64_encode("id") . '/' . base64_encode($estudante->getId()) ?>">
                                   <?= $estudante->getNome(); ?>
                                 </a>
                               </td>
                               <td>
-                                <a href="https://www.intercolegialtinatune.co.ao/Escola/ver/<?php echo base64_encode("id") . '/' . base64_encode($estudante->getEscola()) ?>">
+                                <a href="https://intercolegialtinatune.co.ao/Escola/ver/<?php echo base64_encode("id") . '/' . base64_encode($estudante->getEscola()) ?>">
                                   <?= $estudante->getEscola()->getNome(); ?> (<?= $estudante->getEscola()->getTipo()->getNome(); ?>)
                                 </a>
                               </td>
@@ -196,7 +196,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer clearfix">
-                  <a href="https://www.intercolegialtinatune.co.ao/Estudante/" class="btn btn-sm btn-secondary float-right">Ver todas</a>
+                  <a href="https://intercolegialtinatune.co.ao/Estudante/" class="btn btn-sm btn-secondary float-right">Ver todas</a>
                 </div>
                 <!-- /.card-footer -->
               </div>
@@ -236,10 +236,10 @@
                       ?>
                         <li class="item">
                           <div class="product-img">
-                            <img src='https://www.intercolegialtinatune.co.ao/web-files/adm/dist/img/default-150x150.png' alt='Product Image' class='img-size-50'>
+                            <img src='https://intercolegialtinatune.co.ao/web-files/adm/dist/img/default-150x150.png' alt='Product Image' class='img-size-50'>
                           </div>
                           <div class="product-info">
-                            <a href="https://www.intercolegialtinatune.co.ao/Escola/ver/<?php echo base64_encode("id") . '/' . base64_encode($escola->getId()) ?>" class="product-title"><?= $escola->getNome(); ?></a>
+                            <a href="https://intercolegialtinatune.co.ao/Escola/ver/<?php echo base64_encode("id") . '/' . base64_encode($escola->getId()) ?>" class="product-title"><?= $escola->getNome(); ?></a>
                             <span class="product-description">
                               <?= $escola->getTipo()->getNome(); ?>
                             </span>
@@ -262,7 +262,7 @@
                   if (!empty($v_escolas)) {
                 ?>
                     <div class="card-footer clearfix">
-                      <a href="https://www.intercolegialtinatune.co.ao/Escola/" class="btn btn-sm btn-secondary float-right">Ver todas</a>
+                      <a href="https://intercolegialtinatune.co.ao/Escola/" class="btn btn-sm btn-secondary float-right">Ver todas</a>
                     </div>
                 <?php
                   }

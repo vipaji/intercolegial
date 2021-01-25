@@ -9,11 +9,11 @@ Class ClienteController extends Controller {
         $this->session = new SessionHelper();
         $this->dados['userInfo'] = $this->session->selectSession('userData');
 
-        $this->dados['title_page'] = "Cliente &bull; Oliva de Angola &#8482;";
+        $this->dados['title_page'] = "Cliente &bull; Intercolegial Tina Tune &#8482;";
         $this->dados['page_context'] = "Cliente";
         $this->dados['page_icon'] = "fa fa-users";
-        $this->dados['page_url'] = 'https://www.intercolegialtinatune.co.ao/Cliente/';
-        $this->dados['home_url'] = 'https://www.intercolegialtinatune.co.ao/Dashboard/';
+        $this->dados['page_url'] = '/Cliente/';
+        $this->dados['home_url'] = '/Dashboard/';
     }
 
     public function indexAction() {

@@ -96,7 +96,7 @@
                                     <td><?php echo (++$cont);?></td>
                                     <td><?= ucfirst(Method::upperGeneral($v_entity->getOperacao())); ?></td>
                                     <td><?= $v_entity->getDescricao(); ?></td>
-                                    <td><a href="https://www.intercolegialtinatune.co.ao/Utilizador/ver/<?php echo base64_encode("id") . '/' . base64_encode($v_entity->getUtilizador()) ?>"><?= $v_entity->getUtilizador()->getNome(); ?></a></td>
+                                    <td><a href="https://intercolegialtinatune.co.ao/Utilizador/ver/<?php echo base64_encode("id") . '/' . base64_encode($v_entity->getUtilizador()) ?>"><?= $v_entity->getUtilizador()->getNome(); ?></a></td>
                                     <td><?= $v_entity->getDataHora(); ?></td>
                                    <!--
                                       <td>

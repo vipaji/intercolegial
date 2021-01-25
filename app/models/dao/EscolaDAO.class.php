@@ -88,6 +88,12 @@ class EscolaDAO {
 
         return $this->processResults($statement);
     }
+	
+	public function listarTodasUltimas($orderby = 'id') {
+        $statement = $this->pdo->query('SELECT * FROM escola ORDER BY ' . $orderby . ' DESC limit 5');
+
+        return $this->processResults($statement);
+    }
 
     public function findByNome($nome) {
         $statement = $this->pdo->query("SELECT * FROM escola WHERE nome = '" . $nome . "'");

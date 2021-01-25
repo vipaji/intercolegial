@@ -16,7 +16,7 @@
 	<script src="https://www.intercolegialtinatune.co.ao/web-files/js/main.js"></script>
 
 	<script>
-
+    /** Processamento de Inscrições */
     function inscricaoAjax() {
     $.ajax
             ({
@@ -32,26 +32,26 @@
                 },
                 cache: false,
                 beforeSend: function (xhr) {
-                    $("#processando").show();
+                    $("#processandoInsc").show();
                 },
                 success: function (data) {
                     //alert(data.codigo);
                     if (data.codigo == 200) {
                         
-                        $("#processando").hide();
-                        $("#divSucesso").show();
+                        $("#processandoInsc").hide();
+                        $("#divSucessoInsc").show();
                     }
                     if (data.codigo == 300) {
-                        $("#processando").hide();
-                        $("#divEmailExistente").show();
+                        $("#processandoInsc").hide();
+                        $("#divEmailExistenteInsc").show();
                     }
                     if (data.codigo == 500) {
-                        $("#processando").hide();
-                        $("#divError").show();
+                        $("#processandoInsc").hide();
+                        $("#divErrorInsc").show();
                     }
                 },
                 error: function (xhr, status, error) {
-                    $("#processando").hide();
+                    $("#processandoInsc").hide();
                     $("#erro").show();
 
                 },
@@ -61,37 +61,50 @@
                     $("#telefone-estudante").val("");
 					$("#escola").val("");
 					$("#passe-estudante").val("");
-                    $("#divVazio").hide();
+                    $("#divVazioInsc").hide();
+                    $("#divEscolaVazia").hide();
                 }
             });
     }
-    $('#submit-email').click(function (event) {
+    $('#submit-inscricao').click(function (event) {
         if($("#nome-estudante").val()=="")
         {
             $("#nome-estudante").focus();
-            $("#divVazio").show();
+            $("#divVazioInsc").show();
+            $("#divEscolaVazia").hide();
         }
         else if($("#email-estudante").val()=="")
         {
             $("#email-estudante").focus();
-            $("#divVazio").show();
+            $("#divVazioInsc").show();
+            $("#divEscolaVazia").hide();
         }
         else if($("#telefone-estudante").val()=="")
         {
             $("#telefone-estudante").focus();
-            $("#divVazio").show();
+            $("#divVazioInsc").show();
+            $("#divEscolaVazia").hide();
         }
-		else if($("#telefone-estudante").val()=="")
+        else if($("#escola").val()=="")
+        {
+            $("#escola").select();
+            $("#divVazioInsc").hide();
+            $("#divEscolaVazia").show();
+        }
+		else if($("#passe-estudante").val()=="")
         {
             $("#passe-estudante").focus();
-            $("#divVazio").show();
+            $("#divVazioInsc").show();
+            $("#divEscolaVazia").hide();
         }
         else{
             inscricaoAjax();
         }
     
     })
+    /** Fim de Processamento de Inscrições */
 
+    /** Processamento de Envio de email */
     function emailAjax() {
     $.ajax
             ({
@@ -162,6 +175,7 @@
         }
     
     })
+    /** Fim Processamento de Envio de email */
 
     function voltar()
     {

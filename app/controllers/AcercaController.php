@@ -5,7 +5,7 @@ Class AcercaController extends Controller {
     public function init() {
         $this->dados['title_page'] = 'Sobre o Autenticador Online &#153; - Sistema de Autenticidade de Documentos Legais';
         $this->dados['page_context'] = "Sobre o Autenticador Online &#153; - Sistema de Autenticidade de Documentos Legais";
-        $this->dados['page_url'] = '/autenticador/Login/';
+        $this->dados['page_url'] = '/Login/';
     }
 
     public function indexAction() {
